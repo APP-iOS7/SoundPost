@@ -1,10 +1,3 @@
-//
-//  SoundPostApp.swift
-//  SoundPost
-//
-//  Created by 이재용 on 3/6/25.
-//
-
 import SwiftUI
 import FirebaseCore
 
