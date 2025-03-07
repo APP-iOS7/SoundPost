@@ -11,6 +11,7 @@ struct LoginView: View {
                 .resizable()
                 .frame(width: 80, height: 80)
                 .foregroundColor(.primaryNeon)
+            
             // 로그인 화면 표지
             Text("로그인")
                 .font(.largeTitle)
@@ -18,7 +19,11 @@ struct LoginView: View {
             Spacer().frame(height: 30)
             
             // 이메일 텍스트 밑 텍스트필드
-            Text("이메일")
+            HStack {
+                Text("이메일")
+                Spacer()
+            }
+           
             TextField("이메일을 입력하세요", text: $email)
                 .padding(10)
                 .border(.figmaGray)
@@ -27,7 +32,10 @@ struct LoginView: View {
             Spacer().frame(height: 10)
             
             // 비밀번호 텍스트 밑 텍스트필드
-            Text("비밀번호")
+            HStack {
+                Text("비밀번호")
+                Spacer()
+            }
             TextField("비밀번호를 입력하세요", text: $password)
                 .padding(10)
                 .border(.figmaGray)
