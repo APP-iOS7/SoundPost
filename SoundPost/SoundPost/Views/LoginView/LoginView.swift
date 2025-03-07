@@ -1,27 +1,86 @@
-//
-//  LoginView.swift
-//  SoundPost
-//
-//  Created by 이재용 on 3/7/25.
-//
-
 import SwiftUI
+import AuthenticationServices
 
 struct LoginView: View {
+    @State private var email: String = ""
+    @State private var password: String = ""
     var body: some View {
         VStack {
-            Image(systemName: "heart.fil")
+            // 상단 이미지: 로고 기입 예정
+            Image(systemName: "heart.fill")
                 .resizable()
                 .frame(width: 80, height: 80)
                 .foregroundColor(.primaryNeon)
-                .border(Color.primary, width: 3)
+            // 로그인 화면 표지
             Text("Login")
-                .font(.headline)
+                .font(.largeTitle)
             
+            Spacer().frame(height: 30)
+            
+            // 이메일 텍스트 밑 텍스트필드
+            Text("이메일")
+            TextField("이메일을 입력하세요", text: $email)
+                .padding(10)
+                .border(.figmaGray)
+                .clipShape(.rect(cornerRadius: 5))
+            
+            Spacer().frame(height: 10)
+            
+            // 비밀번호 텍스트 밑 텍스트필드
+            Text("비밀번호")
+            TextField("비밀번호를 입력하세요", text: $password)
+                .padding(10)
+                .border(.figmaGray)
+                .clipShape(.rect(cornerRadius: 5))
+            
+            Spacer().frame(height: 30)
+            
+            // 로그인 버튼
+            Button {
+                print ("Login btn tapped")
+            } label: {
+                Text("로그인")
+                    .foregroundStyle(.black)
+                    .frame(maxWidth: .infinity)
+                    .padding(10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundStyle(.primaryNeon)
+                    )
+            }
+            
+            Button(action: {
+                print ("SignUP btn tapped")
+            }) {
+                Text("회원가입")
+                    .foregroundStyle(.black)
+                    .underline()
+                    .padding(10)
+            }
         }
+        .padding()
     }
 }
 
-//#Preview {
-//    LoginView()
-//}
+struct AppleLoginView: View {
+    var body: some View {
+        SignInWithAppleButton(.signIn) { request in
+            // 로그인 요청 처리
+            request.requestedScopes = [.fullName, .email]
+        } onCompletion: { result in
+            // 로그인 결과 처리
+            switch result {
+            case .success(let authResults):
+                print("성공: \(authResults)")
+            case .failure(let error):
+                print("실패: \(error.localizedDescription)")
+            }
+        }
+        .frame(width: 280, height: 45) // 버튼 크기 조정
+        .signInWithAppleButtonStyle(.black) // 스타일 변경 가능
+    }
+}
+
+#Preview {
+    LoginView()
+}
