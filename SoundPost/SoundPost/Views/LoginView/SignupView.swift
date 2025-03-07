@@ -11,9 +11,7 @@ struct SignupView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var nickname: String = ""
-    private var isAllConditionFit: Bool  {
-        isEmailVaild && isPasswordVaild && isNicknameValid
-    }
+    private var isAllConditionFit: Bool  = true
     private var isEmailVaild: Bool = false
     private var isPasswordVaild: Bool = false
     private var isNicknameValid: Bool = false
@@ -48,10 +46,10 @@ struct SignupView: View {
             
             // 닉네임 텍스트 밑 텍스트필드
             HStack {
-                Text("비밀번호")
+                Text("닉네임")
                 Spacer()
             }
-            TextField("비밀번호를 입력하세요", text: $nickname)
+            TextField("닉네임을 입력하세요", text: $nickname)
                 .padding(10)
                 .border(.figmaGray)
                 .clipShape(.rect(cornerRadius: 5))
