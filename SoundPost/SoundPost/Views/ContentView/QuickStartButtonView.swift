@@ -3,21 +3,23 @@ import SwiftUI
 struct QuickStartButtonView: View {
     @StateObject var contentViewModel: ContentViewModel
     var body: some View {
-        VStack {
-            Spacer()
-            //tab선택에 따른 뷰 변경
-            switch contentViewModel.QuickStartButtonClick {
-            case 1 :
-                SelectRecordView()
-            case 2 :
-                RecordingView()
-            case 3 :
-                SelectView()
-            default :
-                TestUIView()
+        ZStack {
+            Color.gray.opacity(0.3)
+            VStack {
+                Spacer()
+                //tab선택에 따른 뷰 변경
+                switch contentViewModel.QuickStartButtonClick {
+                case 1 :
+                    SelectRecordView()
+                case 2 :
+                    RecordingView()
+                case 3 :
+                    SelectView()
+                default :
+                    TestUIView()
+                }
             }
         }
-        .padding(.bottom, 10)
     }
 }
 
@@ -126,5 +128,6 @@ struct RecordingView: View {
             RoundedRectangle(cornerRadius: 20)
                 .frame(width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height / 7)
         }
+        .padding(.bottom)
     }
 }

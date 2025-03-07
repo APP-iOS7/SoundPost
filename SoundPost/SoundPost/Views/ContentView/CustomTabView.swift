@@ -75,11 +75,11 @@ struct CustomTabView: View {
                 }
                 Spacer()
             }
-            .frame(width: UIScreen.main.bounds.width, height: 85)
+            .frame(width: UIScreen.main.bounds.width, height: 80)
             .background(
                 RoundedRectangle(cornerRadius: 0)
                     .fill(.white)
-                    .frame(width: UIScreen.main.bounds.width, height: 85)
+                    .frame(width: UIScreen.main.bounds.width, height: 80)
             )
             .edgesIgnoringSafeArea(.bottom)
     }

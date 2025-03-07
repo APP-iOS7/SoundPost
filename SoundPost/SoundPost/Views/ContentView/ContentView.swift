@@ -4,28 +4,25 @@ import Firebase
 struct ContentView: View {
     @StateObject private var contentViewModel = ContentViewModel()
     var body: some View {
-        ZStack {
             VStack {
-                switch contentViewModel.tabHandler {
-                case .home:
-                    //                HomeView()
-                    TestUIView()
-                    
-                case .myProfile:
-                    //                MyProfileView()
-                    TestUIView()
-                    
-                }
-            }
-            VStack {
-                if contentViewModel.isShowingNewPost {
-                    QuickStartButtonView(contentViewModel: contentViewModel)
+                ZStack{
+                    switch contentViewModel.tabHandler {
+                    case .home:
+                        //HomeView()
+                        TestUIView()
+                        
+                    case .myProfile:
+                        //MyProfileView()
+                        TestUIView2()
+                    }
+                        if contentViewModel.isShowingNewPost {
+                            QuickStartButtonView(contentViewModel: contentViewModel)
+                        }
                 }
                 Spacer()
                 CustomTabView(contentViewModel: contentViewModel)
             }
         }
-    }
 }
     
     #Preview {
