@@ -31,7 +31,7 @@ struct LoginView: View {
             
             Spacer().frame(height: 10)
             
-            // 비밀번호 텍스트 밑 텍스트필드
+            // 비밀번호 텍스트 및 텍스트필드
             HStack {
                 Text("비밀번호")
                 Spacer()
@@ -69,7 +69,7 @@ struct LoginView: View {
             Spacer().frame(height: 30)
             
             // Apple login btn
-            AppleLoginView()
+            AppleLoginBtnView()
         }
         .padding()
         
@@ -77,7 +77,8 @@ struct LoginView: View {
     }
 }
 
-struct AppleLoginView: View {
+
+struct AppleLoginBtnView: View {
     var body: some View {
         SignInWithAppleButton(.signIn) { request in
             // 로그인 요청 처리
