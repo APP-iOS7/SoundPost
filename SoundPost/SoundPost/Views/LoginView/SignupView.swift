@@ -23,11 +23,6 @@ struct SignupView: View {
                 Text("이메일")
                 Spacer()
             }
-            .onAppear() {
-                print("Firebase is configured: \(FirebaseApp.app() != nil)")
-                
-            }
-            
             TextField("이메일을 입력하세요", text: $email)
                 .padding(10)
                 .border(.figmaGray)
