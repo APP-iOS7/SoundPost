@@ -75,6 +75,8 @@ struct SignupView: View {
                             .foregroundStyle(isAllConditionFit ? .primaryNeon : .figmaGray)
                     )
             }
+            .disabled(!isAllConditionFit)
+            
         }
         .padding()
         .overlay {
