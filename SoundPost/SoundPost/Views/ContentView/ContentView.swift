@@ -2,28 +2,19 @@ import SwiftUI
 import Firebase
 
 struct ContentView: View {
+    @StateObject private var contentViewModel = ContentViewModel()
     var body: some View {
-        TabView {
-            Tab {
-//                HomeView()
-            } label: {
-                Image(systemName: "house.fill")
-                Text("홈")
+        VStack {
+            switch contentViewModel.tabHandler {
+            case .home:
+                HomeView()
+            case .myProfile:
+                QuickStartButtonView()
+            case .quickStart:
+                MyProfileView()
             }
-            Tab {
-                
-            } label: {
-                Image(systemName: "plus.circle.fill")
-                Text("시작")
-            }
-            Tab {
-//                MyProfileView()
-            } label: {
-                Image(systemName: "person.fill")
-                Text("내 프로필")
-            }
+            CustomTabView(selectedTab: $contentViewModel.tabHandler)
         }
-        .tint(.black)
     }
 }
     

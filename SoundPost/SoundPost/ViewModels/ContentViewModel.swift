@@ -5,13 +5,12 @@ final class ContentViewModel: ObservableObject {
 
   @Published private var tabSelection: Tab = .home
 
-  var tabHandler: Binding<Tab> {
-    Binding(
-      get: { self.tabSelection },
-      set: { newTab in
+  var tabHandler: Tab {
+      get { self.tabSelection }
+      set(newTab) {
         self.tabSelection = newTab
       }
-    )
+    
   }
 
   enum Tab: Hashable {
