@@ -28,9 +28,9 @@ struct SignupView: View {
             }
             .onAppear() {
                 print("Firebase is configured: \(FirebaseApp.app() != nil)")
-
+                
             }
-           
+            
             TextField("이메일을 입력하세요", text: $email)
                 .padding(10)
                 .border(.figmaGray)
@@ -78,27 +78,31 @@ struct SignupView: View {
                             .foregroundStyle(isAllConditionFit ? .primaryNeon : .figmaGray)
                     )
             }
-            
         }
         .padding()
+        .overlay {
+            Image(systemName: "checkmark.circle.fill")
+                .resizable()
+                .foregroundStyle(.primaryNeon)
+                .frame(width: 100, height: 100)
+        }
     }
 }
 
 extension SignupView {
     func checkEmailVaild() -> Bool {
-        return true
+        let emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
     }
     func checkPasswordVaild() -> Bool {
-        return true
+        return password.count >= 6
     }
     
     func checkNicknameVaild() -> Bool {
-        if self.nickname != "" {
-            return true
-        }
-        return false
+       return !nickname.isEmpty
     }
-
+    
     func signUp(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error as NSError? {
@@ -124,9 +128,9 @@ extension SignupView {
             }
         }
     }
-
+    
 }
 
-#Preview {
-    SignupView()
-}
+//#Preview {
+//    SignupView()
+//}
