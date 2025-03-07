@@ -10,7 +10,7 @@ import SwiftUI
 struct TestUIView: View {
     var body: some View {
         VStack {
-            Color.gray
+            Color.blue.opacity(0.3)
         }
     }
 }
