@@ -12,7 +12,7 @@ struct LoginView: View {
                 .frame(width: 80, height: 80)
                 .foregroundColor(.primaryNeon)
             // 로그인 화면 표지
-            Text("Login")
+            Text("로그인")
                 .font(.largeTitle)
             
             Spacer().frame(height: 30)
@@ -57,8 +57,15 @@ struct LoginView: View {
                     .underline()
                     .padding(10)
             }
+            
+            Spacer().frame(height: 30)
+            
+            // Apple login btn
+            AppleLoginView()
         }
         .padding()
+        
+        
     }
 }
 
@@ -76,7 +83,7 @@ struct AppleLoginView: View {
                 print("실패: \(error.localizedDescription)")
             }
         }
-        .frame(width: 280, height: 45) // 버튼 크기 조정
+        .frame(maxWidth: .infinity, maxHeight: 40) // 버튼 크기 조정
         .signInWithAppleButtonStyle(.black) // 스타일 변경 가능
     }
 }
