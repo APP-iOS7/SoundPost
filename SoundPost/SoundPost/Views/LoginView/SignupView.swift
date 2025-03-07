@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseCore
 
 struct SignupView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var nickname: String = ""
-    private var isAllConditionFit: Bool  = true
-    private var isEmailVaild: Bool = false
-    private var isPasswordVaild: Bool = false
-    private var isNicknameValid: Bool = false
+    private var isAllConditionFit: Bool {isEmailVaild && isPasswordVaild && isNicknameValid}
+    private var isEmailVaild: Bool {checkEmailVaild()}
+    private var isPasswordVaild: Bool {checkPasswordVaild()}
+    private var isNicknameValid: Bool { checkNicknameVaild() }
     
     
     var body: some View {
@@ -23,6 +25,10 @@ struct SignupView: View {
             HStack {
                 Text("이메일")
                 Spacer()
+            }
+            .onAppear() {
+                print("Firebase is configured: \(FirebaseApp.app() != nil)")
+
             }
            
             TextField("이메일을 입력하세요", text: $email)
@@ -59,7 +65,9 @@ struct SignupView: View {
             
             // 회원가입 버튼
             Button {
-                print ("Login btn tapped")
+                print ("Signup btn tapped")
+                signUp(email: self.email, password: self.password)
+                
             } label: {
                 Text("회원가입")
                     .foregroundStyle(.black)
@@ -70,6 +78,7 @@ struct SignupView: View {
                             .foregroundStyle(isAllConditionFit ? .primaryNeon : .figmaGray)
                     )
             }
+            
         }
         .padding()
     }
@@ -89,8 +98,33 @@ extension SignupView {
         }
         return false
     }
-    
-    
+
+    func signUp(email: String, password: String) {
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let error = error as NSError? {
+                print(error)
+                switch error.code {
+                case AuthErrorCode.emailAlreadyInUse.rawValue:
+                    print("❌ 이미 사용 중인 이메일입니다.")
+                case AuthErrorCode.invalidEmail.rawValue:
+                    print("❌ 이메일 형식이 올바르지 않습니다.")
+                case AuthErrorCode.weakPassword.rawValue:
+                    print("❌ 비밀번호가 너무 짧습니다. (최소 6자 이상 입력)")
+                case AuthErrorCode.networkError.rawValue:
+                    print("❌ 네트워크 오류. 인터넷 연결을 확인하세요.")
+                case AuthErrorCode.tooManyRequests.rawValue:
+                    print("❌ 너무 많은 요청이 발생했습니다. 잠시 후 다시 시도하세요.")
+                case AuthErrorCode.operationNotAllowed.rawValue:
+                    print("❌ 이메일/비밀번호 회원가입이 비활성화되어 있습니다.")
+                default:
+                    print("❌ 알 수 없는 오류 발생: \(error.localizedDescription)")
+                }
+            } else {
+                print("✅ 회원가입 성공! 이메일: \(authResult?.user.email ?? "알 수 없음")")
+            }
+        }
+    }
+
 }
 
 #Preview {
