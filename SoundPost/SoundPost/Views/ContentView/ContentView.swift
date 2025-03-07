@@ -7,13 +7,17 @@ struct ContentView: View {
         VStack {
             switch contentViewModel.tabHandler {
             case .home:
-                HomeView()
+//                HomeView()
+                TestUIView()
             case .myProfile:
-                QuickStartButtonView()
+//                QuickStartButtonView()
+                TestUIView()
             case .quickStart:
-                MyProfileView()
+//                MyProfileView()
+                TestUIView()
+
             }
-            CustomTabView(selectedTab: $contentViewModel.tabHandler)
+            CustomTabView(contentViewModel: contentViewModel)
         }
     }
 }

@@ -2,51 +2,74 @@ import SwiftUI
 
 struct CustomTabView: View {
     
-    @Binding var selectedTab: ContentViewModel.Tab
+    @StateObject var contentViewModel: ContentViewModel
     
     var body: some View {
             HStack {
                 Spacer()
                 Button {
-                    selectedTab = .home
+                    contentViewModel.tabHandler = .home
                 } label: {
                     VStack {
                         Image(systemName: "house.fill")
-                            .foregroundColor(selectedTab == .home ? .black : .gray)
+                            .foregroundColor(contentViewModel.tabHandler == .home ? .black : .gray)
                             .font(.title)
                         
                         Text("홈")
-                            .foregroundColor(selectedTab == .home ? .black : .gray)
+                            .foregroundColor(contentViewModel.tabHandler == .home ? .black : .gray)
                             .font(.caption)
                     }
                 }
                 Spacer()
                 Spacer()
                 Button {
-                    selectedTab = .quickStart
+                    contentViewModel.tabHandler = .quickStart
                 } label: {
                     VStack {
-                        Image(systemName: "plus.circle.fill")
-                            .foregroundColor(selectedTab == .quickStart ? .black : .gray)
-                            .font(.title)
-                        
-                        Text("시작")
-                            .foregroundColor(selectedTab == .quickStart ? .black : .gray)
-                            .font(.caption)
+                        switch contentViewModel.QuickStartButtonClick {
+                        case 1:
+                            Image(systemName: "record.circle")
+                                .foregroundColor(.red)
+                                .font(.title)
+                            Text("녹음")
+                                .foregroundColor(.red)
+                                .font(.caption)
+                        case 2 :
+                            Image(systemName: "stop.circle.fill")
+                                .foregroundColor(.red)
+                                .font(.title)
+                            Text("녹음중")
+                                .foregroundColor(.red)
+                                .font(.caption)
+                        case 3 :
+                            Image(systemName: "record.circle")
+                                .foregroundColor(.red)
+                                .font(.title)
+                            Text("멈춤")
+                                .foregroundColor(.red)
+                                .font(.caption)
+                        default:
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundColor(contentViewModel.tabHandler == .quickStart ? .black : .gray)
+                                .font(.title)
+                            Text("포스팅")
+                                .foregroundColor(contentViewModel.tabHandler == .quickStart ? .black : .gray)
+                                .font(.caption)
+                        }
                     }
                 }
                 Spacer()
                 Spacer()
                 Button {
-                    selectedTab = .myProfile
+                    contentViewModel.tabHandler = .myProfile
                 } label: {
                     VStack {
                         Image(systemName: "person.fill")
-                            .foregroundColor(selectedTab == .myProfile ? .black : .gray)
+                            .foregroundColor(contentViewModel.tabHandler == .myProfile ? .black : .gray)
                             .font(.title)
                         
                         Text("프로필")
-                            .foregroundColor(selectedTab == .myProfile ? .black : .gray)
+                            .foregroundColor(contentViewModel.tabHandler == .myProfile ? .black : .gray)
                             .font(.caption)
                     }
                 }
