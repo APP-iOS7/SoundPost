@@ -8,22 +8,22 @@ struct CustomTabView: View {
             HStack {
                 Spacer()
                 Button {
-                    contentViewModel.tabHandler = .home
+                    contentViewModel.TabSet(.home)
                 } label: {
                     VStack {
                         Image(systemName: "house.fill")
-                            .foregroundColor(contentViewModel.tabHandler == .home ? .black : .gray)
+                            .foregroundColor(contentViewModel.TabColor(.home))
                             .font(.title)
                         
                         Text("홈")
-                            .foregroundColor(contentViewModel.tabHandler == .home ? .black : .gray)
+                            .foregroundColor(contentViewModel.TabColor(.home))
                             .font(.caption)
                     }
                 }
                 Spacer()
                 Spacer()
                 Button {
-                    contentViewModel.tabHandler = .quickStart
+                    contentViewModel.QuickStartSet()
                 } label: {
                     VStack {
                         switch contentViewModel.QuickStartButtonClick {
@@ -45,15 +45,15 @@ struct CustomTabView: View {
                             Image(systemName: "record.circle")
                                 .foregroundColor(.red)
                                 .font(.title)
-                            Text("멈춤")
+                            Text("재녹음")
                                 .foregroundColor(.red)
                                 .font(.caption)
                         default:
                             Image(systemName: "plus.circle.fill")
-                                .foregroundColor(contentViewModel.tabHandler == .quickStart ? .black : .gray)
+                                .foregroundColor(contentViewModel.QuickStartButtonColor())
                                 .font(.title)
                             Text("포스팅")
-                                .foregroundColor(contentViewModel.tabHandler == .quickStart ? .black : .gray)
+                                .foregroundColor(contentViewModel.QuickStartButtonColor())
                                 .font(.caption)
                         }
                     }
@@ -61,23 +61,27 @@ struct CustomTabView: View {
                 Spacer()
                 Spacer()
                 Button {
-                    contentViewModel.tabHandler = .myProfile
+                    contentViewModel.TabSet(.myProfile)
                 } label: {
                     VStack {
                         Image(systemName: "person.fill")
-                            .foregroundColor(contentViewModel.tabHandler == .myProfile ? .black : .gray)
+                            .foregroundColor(contentViewModel.TabColor(.myProfile))
                             .font(.title)
                         
                         Text("프로필")
-                            .foregroundColor(contentViewModel.tabHandler == .myProfile ? .black : .gray)
+                            .foregroundColor(contentViewModel.TabColor(.myProfile))
                             .font(.caption)
                     }
                 }
                 Spacer()
             }
-//            .frame(width: UIScreen.main.bounds.width, height: 85)
+            .frame(width: UIScreen.main.bounds.width, height: 80)
+            .background(
+                RoundedRectangle(cornerRadius: 0)
+                    .fill(.white)
+                    .frame(width: UIScreen.main.bounds.width, height: 80)
+            )
             .edgesIgnoringSafeArea(.bottom)
-
     }
 }
 

@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct TestUIView: View {
+struct TestUIView2: View {
     var body: some View {
         VStack {
-            Color.blue.opacity(0.3)
+            Color.red.opacity(0.6)
         }
     }
 }
 
 #Preview {
-    TestUIView()
+    TestUIView2()
 }
