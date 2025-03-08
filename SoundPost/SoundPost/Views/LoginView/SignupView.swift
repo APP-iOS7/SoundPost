@@ -18,6 +18,10 @@ struct SignupView: View {
     
     var body: some View {
         VStack {
+            Text("회원가입")
+                .font(.largeTitle)
+            
+            Spacer() .frame(height: 30)
             // 이메일 텍스트 밑 텍스트필드
             HStack {
                 Text("이메일")
