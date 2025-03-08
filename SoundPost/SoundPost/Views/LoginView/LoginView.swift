@@ -1,9 +1,13 @@
 import SwiftUI
 import AuthenticationServices
+import FirebaseAuth
 
 struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var isSignupBtnTapped: Bool = false
+    private var authViewModel: AuthViewModel = AuthViewModel()
+    
     var body: some View {
         VStack {
             // 상단 이미지: 로고 기입 예정
@@ -23,7 +27,7 @@ struct LoginView: View {
                 Text("이메일")
                 Spacer()
             }
-           
+            
             TextField("이메일을 입력하세요", text: $email)
                 .padding(10)
                 .border(.figmaGray)
@@ -45,7 +49,7 @@ struct LoginView: View {
             
             // 로그인 버튼
             Button {
-                print ("Login btn tapped")
+                authViewModel.emailAuthSignIn(email: email, password: password)
             } label: {
                 Text("로그인")
                     .foregroundStyle(.black)
@@ -59,6 +63,7 @@ struct LoginView: View {
             
             Button(action: {
                 print ("SignUP btn tapped")
+                isSignupBtnTapped = true
             }) {
                 Text("회원가입")
                     .foregroundStyle(.black)
@@ -71,12 +76,14 @@ struct LoginView: View {
             // Apple login btn
             AppleLoginBtnView()
         }
+        .sheet(isPresented: $isSignupBtnTapped, content: {
+            SignupView()
+        })
         .padding()
         
         
     }
 }
-
 
 struct AppleLoginBtnView: View {
     var body: some View {
@@ -96,7 +103,7 @@ struct AppleLoginBtnView: View {
         .signInWithAppleButtonStyle(.black) // 스타일 변경 가능
     }
 }
-
-#Preview {
-    LoginView()
-}
+//
+//#Preview {
+//    LoginView()
+//}
