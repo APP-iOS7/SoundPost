@@ -126,19 +126,22 @@ struct ImagePickerView: View {
             }
             else {
                 RoundedRectangle(cornerRadius: 5)
-                    .fill(Color.clear)
+                    .fill(Color.black)
                     .frame(width: 60, height: 60)
             }
             PhotosPicker(selection: $quickStartViewModel.imageSelection,
-                         matching: .any(of: [.images, .not(.videos)])) {
+                         matching: .any(of: [.images, .not(.videos)])
+            ) {
                 Text("이미지 선택")
                     .foregroundStyle(.black)
             }
-            
-                         .padding()
-                         .buttonBorderShape(.roundedRectangle(radius: 10))
-                         .buttonStyle(.borderedProminent)
-                         .tint(.primaryNeon.opacity(1))
+            .onChange(of: quickStartViewModel.imageSelection) {
+                quickStartViewModel.setImage(from: quickStartViewModel.imageSelection)
+            }
+            .padding()
+            .buttonBorderShape(.roundedRectangle(radius: 10))
+            .buttonStyle(.borderedProminent)
+            .tint(.primaryNeon.opacity(1))
         }
     }
 }
