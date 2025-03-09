@@ -28,6 +28,8 @@ struct SignupView: View {
                 Spacer()
             }
             TextField("이메일을 입력하세요", text: $email)
+                .autocorrectionDisabled()
+                .autocapitalization(.none)
                 .padding(10)
                 .border(.figmaGray)
                 .clipShape(.rect(cornerRadius: 5))
@@ -39,7 +41,9 @@ struct SignupView: View {
                 Text("비밀번호")
                 Spacer()
             }
-            TextField("비밀번호를 입력하세요", text: $password)
+            SecureField("비밀번호를 입력하세요", text: $password)
+                .autocorrectionDisabled()
+                .autocapitalization(.none)
                 .padding(10)
                 .border(.figmaGray)
                 .clipShape(.rect(cornerRadius: 5))
@@ -52,6 +56,8 @@ struct SignupView: View {
                 Spacer()
             }
             TextField("닉네임을 입력하세요", text: $nickname)
+                .autocorrectionDisabled()
+                .autocapitalization(.none)
                 .padding(10)
                 .border(.figmaGray)
                 .clipShape(.rect(cornerRadius: 5))

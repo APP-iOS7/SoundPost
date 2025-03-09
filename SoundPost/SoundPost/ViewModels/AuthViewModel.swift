@@ -2,9 +2,9 @@ import FirebaseAuth
 import Combine
 
 class AuthViewModel: ObservableObject {
-    @Published var state: SignInState = .signedOut
-    @Published var email: String = ""
-    @Published var password: String = ""
+    // nil -> 로그인된 상태 아님
+    @Published var email: String? = nil
+    
     
     enum SignInState{
         case signedIn
@@ -20,9 +20,9 @@ class AuthViewModel: ObservableObject {
             }
             
             if result != nil {
-                self.state = .signedIn
+                self.email = result?.user.email
                 print("사용자 이메일: \(String(describing: result?.user.email))")
-                print("사용자 이름: \(String(describing: result?.user.displayName))")
+                
                 
             }
         }
