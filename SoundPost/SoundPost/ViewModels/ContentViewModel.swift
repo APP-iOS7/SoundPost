@@ -9,34 +9,6 @@ final class ContentViewModel: ObservableObject {
     @Published var isShowingNewPost: Bool = false
     
     @Published var tabHandler: Tab = .home
-//    {
-////        didSet(oldTab) {
-////            if self.tabHandler != .quickStart && self.QuickStartButtonClick == 0 {
-////                self.preTab = oldTab
-////            }
-////            if self.QuickStartButtonClick == 4 {
-////                self.tabHandler = self.preTab
-////            }
-////        }
-////        willSet(newTab) {
-////            if newTab == .quickStart {
-////                if self.QuickStartButtonClick >= 0 && self.QuickStartButtonClick < 4 {
-////                    self.QuickStartButtonClick += 1
-////                } else {
-////                    self.QuickStartButtonClick = 0
-////                }
-////            } else {
-////                self.QuickStartButtonClick = 0
-////            }
-////        }
-//        get { self.preTab }
-//        set {
-//            if isQuickStartButtonOn {
-//                
-//            }
-//        }
-//        
-//    }
     
     final func isNewPostShowing() -> Bool {
         return !isShowingNewPost
@@ -76,7 +48,6 @@ final class ContentViewModel: ObservableObject {
     }
     enum Tab: Hashable {
         case home
-//        case quickStart
         case myProfile
     }
 }
