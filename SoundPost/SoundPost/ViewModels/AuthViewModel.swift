@@ -4,7 +4,8 @@ import Combine
 class AuthViewModel: ObservableObject {
     @Published var state: SignInState = .signedOut
     @Published var email: String = ""
-    @Published var password: String = ""
+    @Published var user: User? = nil
+    
     
     enum SignInState{
         case signedIn
