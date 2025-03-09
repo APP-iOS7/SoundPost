@@ -11,14 +11,19 @@ struct QuickStartButtonView: View {
                 switch contentViewModel.QuickStartButtonClick {
                 case 1 :
                     SelectRecordView()
+                        .transition(.scale.animation(.easeOut))
                 case 2 :
                     RecordingView()
+                        .transition(.asymmetric(insertion: .scale.animation(.easeIn), removal: .scale.animation(.easeOut)))
                 case 3 :
                     SelectView()
+                        .transition(.asymmetric(insertion: .scale.animation(.easeIn), removal: .move(edge: .bottom).animation(.easeOut)))
                 default :
                     TestUIView()
                 }
+                
             }
+            
         }
     }
 }

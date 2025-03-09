@@ -17,11 +17,13 @@ struct ContentView: View {
                     }
                         if contentViewModel.isShowingNewPost {
                             QuickStartButtonView(contentViewModel: contentViewModel)
+                                .transition(AnyTransition.move(edge: .bottom).combined(with: AnyTransition.opacity))
                         }
                 }
                 Spacer()
                 CustomTabView(contentViewModel: contentViewModel)
             }
+            .animation(.easeInOut, value: contentViewModel.isShowingNewPost)
         }
 }
     
