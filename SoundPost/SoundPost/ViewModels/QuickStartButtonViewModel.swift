@@ -20,6 +20,7 @@ class QuickStartButtonViewModel: ObservableObject {
         guard let selection else { return }
         selection.loadTransferable(type: Data.self) { result in
             switch result {
+            //이미지 선택 성공 시
             case .success(let data) :
                 if let data = data, let newImage = UIImage(data: data) {
                     if self.selectedImage?.pngData() != newImage.pngData() {
@@ -28,6 +29,7 @@ class QuickStartButtonViewModel: ObservableObject {
                         }
                     }
                 }
+            // 이미지 선택 실패 시
             case .failure(let error):
                 print(error)
             }
