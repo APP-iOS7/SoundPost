@@ -20,9 +20,9 @@ struct ContentView: View {
                                 .transition(AnyTransition.move(edge: .bottom).combined(with: AnyTransition.opacity))
                         }
                 }
-                Spacer()
                 CustomTabView(contentViewModel: contentViewModel)
             }
+            .edgesIgnoringSafeArea(.bottom)
             .animation(.easeInOut, value: contentViewModel.isShowingNewPost)
         }
 }
