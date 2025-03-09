@@ -11,7 +11,6 @@ class FirebaseManager {
     let firestore: Firestore
     
     private init() {
-        FirebaseApp.configure()
         self.auth = Auth.auth()
         self.firestore = Firestore.firestore()
     }

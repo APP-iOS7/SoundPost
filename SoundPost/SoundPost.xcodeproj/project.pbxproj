@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BBD9AAE52D7D70E8001CCD52 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BBD9AAE42D7D70E8001CCD52 /* Kingfisher */; };
 		BBD9AAE82D7D7188001CCD52 /* Cache in Frameworks */ = {isa = PBXBuildFile; productRef = BBD9AAE72D7D7188001CCD52 /* Cache */; };
+		BBD9AAF42D7E07E2001CCD52 /* testAudio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BBD9AAF32D7E07E2001CCD52 /* testAudio.mp3 */; };
 		BBF9D3802D79D2A00055F4F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBF9D37F2D79D2A00055F4F3 /* GoogleService-Info.plist */; };
 		BBF9D3852D79D3560055F4F3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BBF9D3842D79D3560055F4F3 /* FirebaseAnalytics */; };
 		BBF9D3872D79D3560055F4F3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = BBF9D3862D79D3560055F4F3 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BBD9AAF32D7E07E2001CCD52 /* testAudio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = testAudio.mp3; sourceTree = "<group>"; };
 		BBF9D34B2D79CEDC0055F4F3 /* SoundPost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundPost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBF9D35B2D79CEDE0055F4F3 /* SoundPostTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundPostTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBF9D3652D79CEDE0055F4F3 /* SoundPostUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundPostUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +104,7 @@
 		BBF9D3422D79CEDC0055F4F3 = {
 			isa = PBXGroup;
 			children = (
+				BBD9AAF32D7E07E2001CCD52 /* testAudio.mp3 */,
 				BBF9D37F2D79D2A00055F4F3 /* GoogleService-Info.plist */,
 				BBF9D34D2D79CEDC0055F4F3 /* SoundPost */,
 				BBF9D35E2D79CEDE0055F4F3 /* SoundPostTests */,
@@ -256,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD9AAF42D7E07E2001CCD52 /* testAudio.mp3 in Resources */,
 				BBF9D3802D79D2A00055F4F3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
