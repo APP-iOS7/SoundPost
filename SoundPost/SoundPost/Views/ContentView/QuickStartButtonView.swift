@@ -117,19 +117,24 @@ struct ImagePickerView: View {
     var body: some View {
         VStack {
             //이미지 들어갈 곳
-            if quickStartViewModel.selectedItems.isEmpty {
-                RoundedRectangle(cornerRadius: 5)
-                    .fill(Color.green)
+            if let _ = quickStartViewModel.selectedImage {
+                Image(uiImage: quickStartViewModel.selectedImage!)
+                    .resizable()
+                    .scaledToFill()
                     .frame(width: 60, height: 60)
-            } else {
-                Image(quickStartViewModel.image)
+                    .cornerRadius(5)
             }
-            PhotosPicker(selection: $quickStartViewModel.selectedItems,
-                         maxSelectionCount: 1,
+            else {
+                RoundedRectangle(cornerRadius: 5)
+                    .fill(Color.clear)
+                    .frame(width: 60, height: 60)
+            }
+            PhotosPicker(selection: $quickStartViewModel.imageSelection,
                          matching: .any(of: [.images, .not(.videos)])) {
                 Text("이미지 선택")
                     .foregroundStyle(.black)
             }
+            
                          .padding()
                          .buttonBorderShape(.roundedRectangle(radius: 10))
                          .buttonStyle(.borderedProminent)
