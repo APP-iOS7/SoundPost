@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BBD9AAE52D7D70E8001CCD52 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BBD9AAE42D7D70E8001CCD52 /* Kingfisher */; };
-		BBD9AAE82D7D7188001CCD52 /* Cache in Frameworks */ = {isa = PBXBuildFile; productRef = BBD9AAE72D7D7188001CCD52 /* Cache */; };
-		BBD9AAF42D7E07E2001CCD52 /* testAudio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BBD9AAF32D7E07E2001CCD52 /* testAudio.mp3 */; };
 		BBF9D3802D79D2A00055F4F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBF9D37F2D79D2A00055F4F3 /* GoogleService-Info.plist */; };
 		BBF9D3852D79D3560055F4F3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BBF9D3842D79D3560055F4F3 /* FirebaseAnalytics */; };
 		BBF9D3872D79D3560055F4F3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = BBF9D3862D79D3560055F4F3 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -40,7 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BBD9AAF32D7E07E2001CCD52 /* testAudio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = testAudio.mp3; sourceTree = "<group>"; };
 		BBF9D34B2D79CEDC0055F4F3 /* SoundPost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundPost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBF9D35B2D79CEDE0055F4F3 /* SoundPostTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundPostTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBF9D3652D79CEDE0055F4F3 /* SoundPostUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundPostUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,12 +66,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBD9AAE82D7D7188001CCD52 /* Cache in Frameworks */,
 				BBF9D38B2D79D3560055F4F3 /* FirebaseAppCheck in Frameworks */,
 				BBF9D3D62D7AC3AC0055F4F3 /* FirebaseAuth in Frameworks */,
 				BBF9D3DC2D7AC3AC0055F4F3 /* FirebaseStorage in Frameworks */,
 				BBF9D3852D79D3560055F4F3 /* FirebaseAnalytics in Frameworks */,
-				BBD9AAE52D7D70E8001CCD52 /* Kingfisher in Frameworks */,
 				BBF9D38D2D79D3560055F4F3 /* FirebaseAppDistribution-Beta in Frameworks */,
 				BBF9D3D82D7AC3AC0055F4F3 /* FirebaseCore in Frameworks */,
 				BBF9D3DA2D7AC3AC0055F4F3 /* FirebaseFirestore in Frameworks */,
@@ -104,7 +98,6 @@
 		BBF9D3422D79CEDC0055F4F3 = {
 			isa = PBXGroup;
 			children = (
-				BBD9AAF32D7E07E2001CCD52 /* testAudio.mp3 */,
 				BBF9D37F2D79D2A00055F4F3 /* GoogleService-Info.plist */,
 				BBF9D34D2D79CEDC0055F4F3 /* SoundPost */,
 				BBF9D35E2D79CEDE0055F4F3 /* SoundPostTests */,
@@ -152,8 +145,6 @@
 				BBF9D3D72D7AC3AC0055F4F3 /* FirebaseCore */,
 				BBF9D3D92D7AC3AC0055F4F3 /* FirebaseFirestore */,
 				BBF9D3DB2D7AC3AC0055F4F3 /* FirebaseStorage */,
-				BBD9AAE42D7D70E8001CCD52 /* Kingfisher */,
-				BBD9AAE72D7D7188001CCD52 /* Cache */,
 			);
 			productName = SoundPost;
 			productReference = BBF9D34B2D79CEDC0055F4F3 /* SoundPost.app */;
@@ -239,8 +230,6 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				BBF9D3832D79D3560055F4F3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				BBD9AAE32D7D70E8001CCD52 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				BBD9AAE62D7D7188001CCD52 /* XCRemoteSwiftPackageReference "Cache" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BBF9D34C2D79CEDC0055F4F3 /* Products */;
@@ -259,7 +248,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBD9AAF42D7E07E2001CCD52 /* testAudio.mp3 in Resources */,
 				BBF9D3802D79D2A00055F4F3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -609,22 +597,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BBD9AAE32D7D70E8001CCD52 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.3.0;
-			};
-		};
-		BBD9AAE62D7D7188001CCD52 /* XCRemoteSwiftPackageReference "Cache" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hyperoslo/Cache.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.4.0;
-			};
-		};
 		BBF9D3832D79D3560055F4F3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -636,16 +608,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BBD9AAE42D7D70E8001CCD52 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BBD9AAE32D7D70E8001CCD52 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		BBD9AAE72D7D7188001CCD52 /* Cache */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BBD9AAE62D7D7188001CCD52 /* XCRemoteSwiftPackageReference "Cache" */;
-			productName = Cache;
-		};
 		BBF9D3842D79D3560055F4F3 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BBF9D3832D79D3560055F4F3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

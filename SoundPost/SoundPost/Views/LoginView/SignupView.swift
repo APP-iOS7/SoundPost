@@ -3,6 +3,8 @@ import FirebaseAuth
 import FirebaseCore
 
 struct SignupView: View {
+    // TODO: 회원가입하는 시점에 User 생성 후 파이어베이스에 업로드 
+    
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var nickname: String = ""
