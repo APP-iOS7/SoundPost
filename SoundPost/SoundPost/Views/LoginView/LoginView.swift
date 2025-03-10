@@ -66,6 +66,7 @@ struct LoginView: View {
                         authViewModel.saveUserAtDefaults()
                         // 유저 정보를 스토어에서 가져와 업데이트 기존에 nil이었던 것에 값이 할당되며 컨텐츠 뷰로 이동
                         authViewModel.getUserByUID()
+                        authViewModel.loginStatus = true
                         
                         
                     }
