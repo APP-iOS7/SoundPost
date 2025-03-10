@@ -1,4 +1,5 @@
 import Firebase
+import FirebaseCoreInternal
 import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
@@ -55,6 +56,9 @@ class FirebaseManager {
             completion(model)
         }
     }
+  
+    
+    
     func deleteData(collection: String, documentID: String) {
         firestore.collection(collection).document(documentID).delete() { error in
             if let error = error {
@@ -82,6 +86,30 @@ class FirebaseManager {
 }
 
 extension FirebaseManager {
+    
+
+    func getAllPosts(completion: @escaping ([Post]) -> Void) {
+        print("get all posts!")
+        firestore.collection("posts")
+            .order(by: "uploadDate", descending: true) // 필드명 확인 필수!
+            .addSnapshotListener { querySnapshot, error in
+                
+                if let error = error {
+                    print("❌ Error getting posts: \(error.localizedDescription)")
+                    completion([]) // 중복 호출 방지
+                    return
+                }
+                
+                guard let documents = querySnapshot?.documents else {
+                    completion([]) // 중복 호출 방지
+                    return
+                }
+                
+                let retPosts: [Post] = documents.compactMap { Post.from(dictionary: $0.data()) }
+                completion(retPosts)
+            }
+    }
+
     
     private func dictToModel<T: Codable & Identifiable> (collection: String, dict: [String: Any]) -> T {
         switch collection {
