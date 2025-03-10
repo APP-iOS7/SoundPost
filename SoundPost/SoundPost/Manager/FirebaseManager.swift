@@ -144,8 +144,8 @@ extension FirebaseManager {
     }
     
     
-    private func addPostToUser(userId: String, postId: String, completion: @escaping (Bool) -> Void) {
-        let userRef = firestore.collection("users").document(userId)
+    func addPostToUser(userId: String?, postId: String, completion: @escaping (Bool) -> Void) {
+        let userRef = firestore.collection("users").document(userId!)
         
         userRef.updateData([
             "posts": FieldValue.arrayUnion([postId]) // ✅ 배열에 `postId` 추가 (중복 방지)
