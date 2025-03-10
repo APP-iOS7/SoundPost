@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseCore
 
 protocol DictionaryConvertible: Codable {
     var dictionaryRepresentation: [String: Any]? { get }
@@ -15,19 +16,27 @@ protocol DictionaryConvertible: Codable {
 extension DictionaryConvertible {
     // 🔹 Dictionary → Model 변환
     static func from(dictionary: [String: Any]) -> Self? {
-        guard let data = try? JSONSerialization.data(withJSONObject: dictionary, options: []),
-              let model = try? JSONDecoder().decode(Self.self, from: data) else {
-            return nil
-        }
-        return model
-    }
-
+           do {
+               let data = try JSONSerialization.data(withJSONObject: dictionary, options: [])
+               let model = try JSONDecoder().decode(Self.self, from: data)
+               return model
+           } catch {
+               print("❌ Dictionary → Model 변환 실패: \(error)")
+               return nil
+           }
+       }
+    
     // 🔹 Model → Dictionary 변환
     var dictionaryRepresentation: [String: Any]? {
-        guard let data = try? JSONEncoder().encode(self),
-              let dictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+        do {
+            let data = try JSONEncoder().encode(self)
+            var dictionary = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            print ("DICT IS HERE!!")
+            print(dictionary)
+            return dictionary
+        } catch {
+            print ("모델 딕셔너리 변환 실패")
             return nil
         }
-        return dictionary
     }
 }

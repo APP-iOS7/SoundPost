@@ -32,6 +32,8 @@ struct SignupView: View {
                 Spacer()
             }
             TextField("이메일을 입력하세요", text: $email)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
                 .padding(10)
                 .border(.figmaGray)
                 .clipShape(.rect(cornerRadius: 5))
@@ -44,6 +46,8 @@ struct SignupView: View {
                 Spacer()
             }
             TextField("비밀번호를 입력하세요", text: $password)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
                 .padding(10)
                 .border(.figmaGray)
                 .clipShape(.rect(cornerRadius: 5))
@@ -172,7 +176,7 @@ extension SignupView {
                 guard let userId = authResult?.user.uid else { return }
                 guard let email = authResult?.user.email else { return }
                 
-                FirebaseManager.shared.saveData(targetData: User(id: userId, email: email, nickname: self.nickname, isAlarmOn: true, posts: [], signupDate: Date()))
+                FirebaseManager.shared.saveData(targetData: User(id: userId, email: email, nickname: self.nickname, isAlarmOn: true, posts: [], signupDate: TimeInterval()))
                 // ✅ 0.3초 뒤에 체크마크 사라지도록 설정
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     withAnimation(.easeOut(duration: 0.3)) {
