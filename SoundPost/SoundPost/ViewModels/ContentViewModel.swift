@@ -15,11 +15,11 @@ final class ContentViewModel: ObservableObject {
     }
     
     final func QuickStartButtonColor() -> Color {
-        return isQuickStartButtonOn ? .black : .gray
+        return isQuickStartButtonOn ? .primary : .secondary
     }
     final func TabColor(_ tab: Tab) -> Color {
-        if isQuickStartButtonOn { return .gray }
-        else { return tab == self.tabHandler ? .black : .gray }
+        if isQuickStartButtonOn { return .secondary }
+        else { return tab == self.tabHandler ? .primary : .secondary }
     }
     final func TabSet(_ tab: Tab) {
         self.tabHandler = tab
@@ -47,7 +47,7 @@ final class ContentViewModel: ObservableObject {
     final func QuickStartClose() {
         self.isQuickStartButtonOn = false
         self.QuickStartButtonClick = 0
-        self.isQuickStartButtonOn = false
+        self.isShowingNewPost = false
     }
     enum Tab: Hashable {
         case home

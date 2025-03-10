@@ -21,7 +21,8 @@ struct SoundPostApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ProfileView()
+            LoginView()
+                .tint(.primary)
         }
     }
 }

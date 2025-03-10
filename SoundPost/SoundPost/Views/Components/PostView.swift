@@ -1,5 +1,4 @@
 import SwiftUI
-import AVFoundation
 
 struct PostView: View {
     @ObservedObject var post: PostViewModel
