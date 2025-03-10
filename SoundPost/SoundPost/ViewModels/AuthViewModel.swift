@@ -5,6 +5,7 @@ class AuthViewModel: ObservableObject {
     
     @Published var email: String?
     @Published var uid: String? // firebase User의 id
+    @Published var password: String?
     @Published var user: User? = nil
     @Published var loginStatus: Bool = false
     
@@ -18,6 +19,9 @@ class AuthViewModel: ObservableObject {
         if let validUID = uid {
             print("✅ UID 존재함, Firestore에서 유저 정보 가져오기 시도")
             getUserByUID()
+            FirebaseManager.shared.emailSignIn(email: self.email!, password: self.password!) { _, _ in
+                print("자동 로그인")
+            }
         } else {
             print("🚨 UID 없음, 자동 로그인 불가능")
         }
@@ -26,10 +30,12 @@ class AuthViewModel: ObservableObject {
     func saveUserAtDefaults() {
         UserDefaults.standard.set(uid, forKey: "uid")
         UserDefaults.standard.set(email, forKey: "email")
+        UserDefaults.standard.set(password, forKey: "password")
     }
     private func getUserFromDefaults() {
         uid = UserDefaults.standard.string(forKey: "uid") ?? nil
         email = UserDefaults.standard.string(forKey: "email") ?? nil
+        password = UserDefaults.standard.string(forKey: "password") ?? nil
     }
     
     func getUserByUID() {

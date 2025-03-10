@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @State var isNavigationBarShowing: Bool = false
-   @EnvironmentObject private var authViewModel : AuthViewModel
+   @EnvironmentObject var authViewModel : AuthViewModel
     // 한 줄에 하나의 아이템만 표시되도록 그리드 설정
     private let columns = [
         GridItem(.flexible())
@@ -45,16 +45,32 @@ struct ProfileView: View {
             
             
         }
-        .onAppear() {
-            postIds = authViewModel.user?.posts ?? []
+        .onAppear {
+            guard let user = authViewModel.user else {
+                print("❌ 유저 정보가 로드되지 않음")
+                return
+            }
+            
+            postIds = user.posts
+            print("✅ 유저의 포스트 ID 목록: \(postIds)")
+            
             for postid in postIds {
                 FirebaseManager.shared.fetchData(collection: "posts", documentID: postid) { (result: Post?) in
                     if let newPost = result {
-                        self.myPosts.append(PostViewModel.createPVMwithPost(post: newPost, myId: authViewModel.user?.id ?? ""))
+                        DispatchQueue.main.async {
+                            Task {
+                                let postVM = PostViewModel.createPVMwithPost(post: newPost, myId: user.id!)
+                                self.myPosts.append(postVM)
+                                print("✅ 추가된 포스트: \(postVM.postId)")
+                            }
+                        }
+                    } else {
+                        print("❌ 포스트 데이터 가져오기 실패: \(postid)")
                     }
                 }
             }
         }
+
     }
 }
 
