@@ -14,26 +14,41 @@ struct PostDetailView: View {
     
     var body: some View {
         ScrollView {
-            PostView(post: post)
-            
-            Divider()
-                .padding(.leading)
-            
-            VStack(alignment: .leading) {
-                Text("대답")
-                    .font(.headline)
-                    .padding(.horizontal)
+            VStack {
+                PostView(post: post)
                 
-                ForEach(comments, id: \.commentId) { comment in
-                    VStack(spacing: 0) {
-                        CommentView(comment: comment)
-                        
-                        Divider()
-                            .padding(.leading)
+                Divider()
+                    .padding(.leading)
+                
+                VStack(alignment: .leading) {
+                    Text("대답")
+                        .font(.headline)
+                        .padding(.horizontal)
+                    
+                    ForEach(comments, id: \.commentId) { comment in
+                        VStack(spacing: 0) {
+                            CommentView(comment: comment)
+                            
+                            Divider()
+                                .padding(.leading)
+                        }
                     }
                 }
+                .padding(.top)
             }
-            .padding(.vertical)
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            // 하단에 고정된 대답하기 버튼
+            Button {
+                // TODO: 대답하기 버튼 액션
+            } label: {
+                Text("대답 하기")
+                    .font(.headline)
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity)
+                    .padding(.top)
+                    .background(.primaryNeon)
+            }
         }
     }
 }
