@@ -16,6 +16,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct SoundPostApp: App {
+    @StateObject var authViewModel = AuthViewModel()
     // Firebase 초기화를 위해 AppDelegate 사용
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
@@ -23,6 +24,7 @@ struct SoundPostApp: App {
         WindowGroup {
             LoginView()
                 .tint(.primary)
+                .environmentObject(authViewModel)
         }
     }
 }
