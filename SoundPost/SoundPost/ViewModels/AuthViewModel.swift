@@ -18,10 +18,11 @@ class AuthViewModel: ObservableObject {
         
         if let validUID = uid {
             print("✅ UID 존재함, Firestore에서 유저 정보 가져오기 시도")
-            getUserByUID()
+            
             FirebaseManager.shared.emailSignIn(email: self.email!, password: self.password!) { _, _ in
                 print("자동 로그인")
                 self.loginStatus = true
+                self.getUserByUID()
             }
         } else {
             print("🚨 UID 없음, 자동 로그인 불가능")
@@ -40,7 +41,11 @@ class AuthViewModel: ObservableObject {
     }
     
     func getUserByUID() {
-        FirebaseManager.shared.fetchData(collection: "users", documentID: uid ?? "") { (result: User?) in
+        
+        print("self.uid => \(self.uid)")
+        FirebaseManager.shared.fetchData(collection: "users", documentID: self.uid ?? "") { (result: User?) in
+            
+            print(result)
             self.user = result
             print("✅ Firestore에서 유저 데이터 가져옴: \(self.user?.nickname ?? "의문의 실패")")
         }
