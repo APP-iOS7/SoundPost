@@ -34,11 +34,11 @@ struct PostView: View {
                 Spacer()
                 
                 // 좋아요 버튼
-                Button(action: {
+                Button {
                     post.toggleLike()
-                }) {
+                } label: {
                     Image(systemName: post.isLiked ? "heart.fill" : "heart")
-                        .foregroundColor(post.isLiked ? .red : .gray)
+                        .foregroundColor(post.isLiked ? .red : .secondary)
                 }
             }
             
