@@ -150,7 +150,7 @@ struct ImagePickerView: View {
             }
             else {
                 RoundedRectangle(cornerRadius: 5)
-                    .fill(Color.black)
+                    .fill(Color.clear)
                     .frame(width: 60, height: 60)
             }
             //이미지 선택 피커
