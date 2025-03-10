@@ -53,8 +53,10 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
             audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
             audioRecorder.record(forDuration: 90)
             timerCount = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (value) in
-                self.countSec += 1
-                self.timer = "\(self.countSec / 60):\(self.countSec % 60)"
+                while self.audioRecorder.isRecording {
+                    self.countSec += 1
+                    self.timer = "\(self.countSec / 60):\(self.countSec % 60)"
+                }
             })
         } catch {
             print("Failed to setup recorder: \(error.localizedDescription)")

@@ -8,8 +8,8 @@ struct ContentView: View {
                 ZStack{
                     switch contentViewModel.tabHandler {
                     case .home:
-//                        HomeView()
-                        TestUIView()
+                        HomeView()
+//                        TestUIView()
                         
                     case .myProfile:
                         //MyProfileView()

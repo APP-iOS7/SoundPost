@@ -21,6 +21,11 @@ struct QuickStartButtonView: View {
                         .transition(.asymmetric(insertion: .scale.animation(.easeIn), removal: .move(edge: .bottom).animation(.easeOut)))
                 }
             }
+            .onChange(of: quickStartViewModel.audioRecoder.time) {
+                if quickStartViewModel.audioRecoder.time == 90 {
+                    contentViewModel.QuickStartButtonClick = 3
+                }
+            }
             .onChange(of: contentViewModel.QuickStartButtonClick) { _, click in
                 switch click {
                 case 2:
