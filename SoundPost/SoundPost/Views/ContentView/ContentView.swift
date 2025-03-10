@@ -8,8 +8,8 @@ struct ContentView: View {
                 ZStack{
                     switch contentViewModel.tabHandler {
                     case .home:
-                        //HomeView()
-                        TestUIView()
+                        HomeView()
+//                        TestUIView()
                         
                     case .myProfile:
                         //MyProfileView()
@@ -17,11 +17,13 @@ struct ContentView: View {
                     }
                         if contentViewModel.isShowingNewPost {
                             QuickStartButtonView(contentViewModel: contentViewModel)
+                                .transition(AnyTransition.move(edge: .bottom).combined(with: AnyTransition.opacity))
                         }
                 }
-                Spacer()
                 CustomTabView(contentViewModel: contentViewModel)
             }
+            .edgesIgnoringSafeArea(.bottom)
+            .animation(.easeInOut, value: contentViewModel.isShowingNewPost)
         }
 }
     

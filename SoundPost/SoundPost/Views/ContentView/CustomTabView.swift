@@ -5,6 +5,8 @@ struct CustomTabView: View {
     @StateObject var contentViewModel: ContentViewModel
     
     var body: some View {
+        VStack {
+            Spacer()
             HStack {
                 Spacer()
                 Button {
@@ -75,13 +77,15 @@ struct CustomTabView: View {
                 }
                 Spacer()
             }
-            .frame(width: UIScreen.main.bounds.width, height: 80)
+            Spacer()
+            Spacer()
+        }
+        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 9.8)
             .background(
                 RoundedRectangle(cornerRadius: 0)
                     .fill(.white)
-                    .frame(width: UIScreen.main.bounds.width, height: 80)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 9.8)
             )
-            .edgesIgnoringSafeArea(.bottom)
     }
 }
 

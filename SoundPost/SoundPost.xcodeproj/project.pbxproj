@@ -43,9 +43,22 @@
 		BBF9D37F2D79D2A00055F4F3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A1160C4F2D7E6B3200B05F20 /* Exceptions for "SoundPost" folder in "SoundPost" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = BBF9D34A2D79CEDC0055F4F3 /* SoundPost */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		BBF9D34D2D79CEDC0055F4F3 /* SoundPost */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1160C4F2D7E6B3200B05F20 /* Exceptions for "SoundPost" folder in "SoundPost" target */,
+			);
 			path = SoundPost;
 			sourceTree = "<group>";
 		};
@@ -436,6 +449,8 @@
 				DEVELOPMENT_TEAM = D4WZH4CP37;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SoundPost/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "녹음을 위해 마이크 접근이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -465,6 +480,8 @@
 				DEVELOPMENT_TEAM = D4WZH4CP37;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SoundPost/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "녹음을 위해 마이크 접근이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
