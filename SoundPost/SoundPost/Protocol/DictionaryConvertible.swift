@@ -30,7 +30,7 @@ extension DictionaryConvertible {
     var dictionaryRepresentation: [String: Any]? {
         do {
             let data = try JSONEncoder().encode(self)
-            var dictionary = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
             print ("DICT IS HERE!!")
             print(dictionary)
             return dictionary
