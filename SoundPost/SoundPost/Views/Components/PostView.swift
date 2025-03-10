@@ -53,10 +53,9 @@ struct PostView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .background(
-                                // 이미지의 실제 크기를 측정하여 높이 계산
+                                // 이미지의 크기를 측정하여 높이 계산
                                 GeometryReader { geometry in
                                     Color.clear.onAppear {
-                                        // 이미지의 실제 높이와 화면 너비의 2배 중 작은 값을 사용
                                         let imageWidth = UIScreen.main.bounds.width - 32 // 화면 너비 - 패딩
                                         self.imageHeight = min(geometry.size.height, imageWidth * 2)
                                     }
