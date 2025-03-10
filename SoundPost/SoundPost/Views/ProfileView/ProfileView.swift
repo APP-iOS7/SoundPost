@@ -26,73 +26,74 @@ struct ProfileView: View {
                 VStack {
                     ProfileHeaderView(authViewModel: authViewModel)
                 }
-
-                    ForEach(myPosts, id: \.postId) { post in
-                        NavigationLink(destination: PostDetailView(post: post)) {
-                            VStack(spacing: 0) {
-                                PostView(post: post)
-                                
-                                Divider()
-                                    .padding(.leading)
-                            }
-                            .contentShape(Rectangle()) // 전체 영역을 탭 가능하게 만듦
+                
+                ForEach(myPosts, id: \.postId) { post in
+                    NavigationLink(destination: PostDetailView(post: post)) {
+                        VStack(spacing: 0) {
+                            PostView(post: post)
+                            
+                            Divider()
+                                .padding(.leading)
                         }
-                        .buttonStyle(PlainButtonStyle()) // 기본 버튼 스타일 제거
-                    
+                        .contentShape(Rectangle()) // 전체 영역을 탭 가능하게 만듦
+                    }
+                    .buttonStyle(PlainButtonStyle()) // 기본 버튼 스타일 제거
                 }
-        }
-        .onAppear() {
-            guard let user = authViewModel.user else {
-                print("❌ 유저 정보가 로드되지 않음")
-                return
+                
             }
-            
-            postIds = user.posts
-            print("✅ 유저의 포스트 ID 목록: \(postIds)")
-            
-            for postid in postIds {
-                FirebaseManager.shared.fetchData(collection: "posts", documentID: postid) { (result: Post?) in
-                    if let newPost = result {
-                        DispatchQueue.main.async {
-                            Task {
-                                let postVM = PostViewModel.createPVMwithPost(post: newPost, myId: user.id!)
-                                
-                                if self.myPosts.contains(where: { $0.postId != postVM.postId }) {
-                                    self.myPosts.append(postVM)
-                                    print("✅ 추가된 포스트: \(postVM.postId)")
+            .onAppear() {
+                guard let user = authViewModel.user else {
+                    print("❌ 유저 정보가 로드되지 않음")
+                    return
+                }
+                
+                postIds = user.posts
+                print("✅ 유저의 포스트 ID 목록: \(postIds)")
+                
+                for postid in postIds {
+                    FirebaseManager.shared.fetchData(collection: "posts", documentID: postid) { (result: Post?) in
+                        if let newPost = result {
+                            DispatchQueue.main.async {
+                                Task {
+                                    let postVM = PostViewModel.createPVMwithPost(post: newPost, myId: user.id!)
+                                    
+                                   
+                                        self.myPosts.append(postVM)
+                                        print("✅ 추가된 포스트: \(postVM.postId)")
+                                    
+                                    
                                 }
-                                
                             }
+                        } else {
+                            print("❌ 포스트 데이터 가져오기 실패: \(postid)")
                         }
-                    } else {
-                        print("❌ 포스트 데이터 가져오기 실패: \(postid)")
                     }
                 }
             }
-        }
-        .onChange(of: authViewModel.user?.posts) {
-            guard let user = authViewModel.user else {
-                print("❌ 유저 정보가 로드되지 않음")
-                return
-            }
-            
-            postIds = user.posts
-            print("✅ 유저의 포스트 ID 목록: \(postIds)")
-            
-            for postid in postIds {
-                FirebaseManager.shared.fetchData(collection: "posts", documentID: postid) { (result: Post?) in
-                    if let newPost = result {
-                        DispatchQueue.main.async {
-                            Task {
-                                let postVM = PostViewModel.createPVMwithPost(post: newPost, myId: user.id!)
-                                if self.myPosts.contains(where: { $0.postId != postVM.postId }) {
-                                    self.myPosts.append(postVM)
-                                    print("✅ 추가된 포스트: \(postVM.postId)")
+            .onChange(of: authViewModel.user?.posts) {
+                guard let user = authViewModel.user else {
+                    print("❌ 유저 정보가 로드되지 않음")
+                    return
+                }
+                
+                postIds = user.posts
+                print("✅ >유저의 포스트 ID 목록: \(postIds)")
+                
+                for postid in postIds {
+                    FirebaseManager.shared.fetchData(collection: "posts", documentID: postid) { (result: Post?) in
+                        if let newPost = result {
+                            DispatchQueue.main.async {
+                                Task {
+                                    let postVM = PostViewModel.createPVMwithPost(post: newPost, myId: user.id!)
+                                    if (self.myPosts.first(where: { $0.postId == postVM.postId }) == nil) {
+                                        self.myPosts.append(postVM)
+                                        print("✅ 추가된 포스트: \(postVM.postId)")
+                                    }
                                 }
                             }
+                        } else {
+                            print("❌ 포스트 데이터 가져오기 실패: \(postid)")
                         }
-                    } else {
-                        print("❌ 포스트 데이터 가져오기 실패: \(postid)")
                     }
                 }
             }
