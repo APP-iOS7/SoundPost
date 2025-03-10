@@ -52,11 +52,9 @@ struct PostView: View {
             
             // 포스트 이미지
             if let postImageURL = post.postImage {
-                // 이미지 로딩 및 표시
                 AsyncImage(url: URL(string: postImageURL)) { phase in
                     switch phase {
                     case .success(let image):
-                        // 이미지가 로드되면 해당 이미지를 표시
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fit)
