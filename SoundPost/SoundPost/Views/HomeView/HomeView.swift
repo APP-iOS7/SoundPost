@@ -18,7 +18,7 @@ struct HomeView: View {
                                 PostView(post: post)
                                 
                                 Divider()
-                                    .padding(.horizontal, 8)
+                                    .padding(.leading)
                             }
                             .contentShape(Rectangle()) // 전체 영역을 탭 가능하게 만듦
                         }
