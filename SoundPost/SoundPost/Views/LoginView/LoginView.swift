@@ -102,6 +102,7 @@ struct LoginView: View {
             .navigationDestination(item: $authViewModel.user) { user in
                 ContentView()
                     .environmentObject(authViewModel)
+                    .navigationBarBackButtonHidden(true)
             }
         }
     }
