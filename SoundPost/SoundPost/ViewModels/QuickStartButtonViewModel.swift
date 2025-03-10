@@ -90,5 +90,8 @@ class QuickStartButtonViewModel: ObservableObject {
     func timeStamp() -> String {
         return audioRecoder.timer
     }
+    final func setRecording() {
+        audioRecoder.setRecording()
+    }
     
 }

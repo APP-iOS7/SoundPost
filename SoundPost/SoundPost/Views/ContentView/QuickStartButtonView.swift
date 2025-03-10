@@ -40,6 +40,8 @@ struct QuickStartButtonView: View {
                     quickStartViewModel.audioRecoder.isPlaying = false
                 }
                 switch click {
+                case 1:
+                    quickStartViewModel.setRecording()
                 case 2:
                     quickStartViewModel.startRecoring()
                     print("recording")
@@ -135,7 +137,8 @@ struct SelectRecordView: View {
 }
 
 struct RecordingView: View {
-    @ObservedObject var quickStartViewModel: QuickStartButtonViewModel
+    @StateObject var quickStartViewModel: QuickStartButtonViewModel
+    @State var time = "00:00"
     var body: some View {
         HStack {
             //음성 인식 파형이 그려질 공간
@@ -143,8 +146,15 @@ struct RecordingView: View {
             RoundedRectangle(cornerRadius: 20)
                 .frame(width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height / 7)
                 .overlay(
-                    Text(quickStartViewModel.audioRecoder.timer)
+                    Text("\(time) / 01:30")
                                             .foregroundStyle(.white)
+                                            .onChange(of: quickStartViewModel.audioRecoder.audioRecorder?.currentTime ?? 0) { _, count in
+                                                if count != 0 {
+                                                    time = quickStartViewModel.timeStamp()
+                                                } else {
+                                                    time = "00:00"
+                                                }
+                                            }
                     
                 )
         }

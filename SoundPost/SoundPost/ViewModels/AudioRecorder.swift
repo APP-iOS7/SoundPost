@@ -37,7 +37,12 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
         return paths[0]
     }
 
+    func setRecording() {
+        self.timer = "00:00"
+        self.countSec = 0
+    }
     func startRecording() {
+        
         let fileURL = getDocumentsDirectory().appendingPathComponent("SoundPost_\(UUID().uuidString).m4a")
         audioFilename = fileURL
 
@@ -78,7 +83,7 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
             print("❌ Attempted to stop recording, but no active recorder found")
             return
         }
-        
+        time = recorder.currentTime
         recorder.stop()
         print("🛑 Recording stopped")
 
