@@ -144,7 +144,7 @@ extension FirebaseManager {
     }
     
     
-    private func addPostToUser(userId: String, postId: String, completion: @escaping (Bool) -> Void) {
+    private func addPostToUser(userId: String, postId: String, completion: @escaping ([String]?) -> Void) {
         let userRef = firestore.collection("users").document(userId)
         
         userRef.updateData([
@@ -152,13 +152,30 @@ extension FirebaseManager {
         ]) { error in
             if let error = error {
                 print("❌ 유저 포스트 추가 실패: \(error.localizedDescription)")
-                completion(false)
+                completion(nil) // 실패 시 nil 반환
             } else {
                 print("✅ 유저 문서에 포스트 추가 완료: \(postId)")
-                completion(true)
+                
+                // 🔹 업데이트된 데이터를 다시 가져와 반환
+                userRef.getDocument { document, error in
+                    if let error = error {
+                        print("❌ 업데이트된 유저 데이터 가져오기 실패: \(error.localizedDescription)")
+                        completion(nil)
+                    } else if let document = document, document.exists {
+                        if let updatedPosts = document.data()?["posts"] as? [String] {
+                            print("📌 업데이트된 포스트 배열: \(updatedPosts)")
+                            completion(updatedPosts) // ✅ 업데이트된 배열 반환
+                        } else {
+                            completion(nil)
+                        }
+                    } else {
+                        completion(nil)
+                    }
+                }
             }
         }
     }
+
     
     
     private func saveToStore(collection: String, documentID: String, data: [String: Any]) {
