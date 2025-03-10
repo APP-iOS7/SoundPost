@@ -1,16 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    // 샘플 데이터로 PostViewModel 배열 생성
-    @State private var posts: [PostViewModel] = [
-        PostViewModel.createPreview(uploaderName: "사용자1"),
-        PostViewModel.createPreview(uploaderName: "사용자2"),
-        PostViewModel.createPreview(uploaderName: "사용자3"),
-        PostViewModel.createPreview(uploaderName: "사용자4"),
-        PostViewModel.createPreview(uploaderName: "사용자6"),
-        PostViewModel.createPreview(uploaderName: "사용자7"),
-        PostViewModel.createPreview(uploaderName: "사용자8")
-    ]
+    @State var posts: [PostViewModel]
     
     // 한 줄에 하나의 아이템만 표시되도록 그리드 설정
     private let columns = [
@@ -42,5 +33,14 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    var posts: [PostViewModel] = [
+        PostViewModel.createPreview(uploaderName: "사용자1"),
+        PostViewModel.createPreview(uploaderName: "사용자2"),
+        PostViewModel.createPreview(uploaderName: "사용자3"),
+        PostViewModel.createPreview(uploaderName: "사용자4"),
+        PostViewModel.createPreview(uploaderName: "사용자6"),
+        PostViewModel.createPreview(uploaderName: "사용자7"),
+        PostViewModel.createPreview(uploaderName: "사용자8")
+    ]
+    HomeView(posts: posts)
 }
