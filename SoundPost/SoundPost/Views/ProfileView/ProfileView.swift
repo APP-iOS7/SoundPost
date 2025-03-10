@@ -70,7 +70,6 @@ struct ProfileView: View {
                 }
             }
         }
-
     }
 }
 
@@ -85,9 +84,10 @@ struct ProfileHeaderView: View {
                 .resizable()
                 .frame(width: 100, height: 100)
                 .clipShape(.circle)
-                .border(.primaryNeon)
+               
             Spacer()
                 .frame(width: 30)
+            
             VStack(alignment: .leading) {
                 Text(authViewModel.user?.nickname ?? "알 수 없는 사용자")
                     .font(.headline)
