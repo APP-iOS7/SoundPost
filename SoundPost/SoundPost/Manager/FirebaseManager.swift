@@ -86,7 +86,25 @@ class FirebaseManager {
 }
 
 extension FirebaseManager {
-    
+    func fetchDataAsync<T: Codable>(collection: String, documentID: String) async throws -> T? {
+            let documentRef = firestore.collection(collection).document(documentID)
+            
+            do {
+                let documentSnapshot = try await documentRef.getDocument()
+                
+                guard let data = documentSnapshot.data() else {
+                    print("❌ Firebase 데이터 없음: \(documentID)")
+                    return nil
+                }
+                
+                let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+                let result = try JSONDecoder().decode(T.self, from: jsonData)
+                return result
+            } catch {
+                print("❌ Firebase 데이터 가져오기 실패: \(error.localizedDescription)")
+                throw error
+            }
+        }
 
     func getAllPosts(completion: @escaping ([Post]) -> Void) {
         print("get all posts!")

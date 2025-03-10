@@ -51,3 +51,18 @@ class PostViewModel: ObservableObject {
         )
     }
 }
+extension PostViewModel {
+    static func createPVMwithPost(post: Post, myId: String) -> PostViewModel {
+        return PostViewModel(
+            postId: post.id!,
+            uploadDate: Date(timeIntervalSince1970: post.uploadDate),
+            uploaderName: post.uploaderName,
+            profileImage: nil,
+            postImage: post.imageURL,
+            isLiked: post.likes.contains(myId),
+            audioURL: URL(string: post.audioURL),
+            likesCount: post.likes.count,
+            commentsCount: post.comments.count
+        )
+    }
+}
