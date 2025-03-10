@@ -26,8 +26,7 @@ struct ProfileView: View {
                 VStack {
                     ProfileHeaderView(authViewModel: authViewModel)
                 }
-                
-                LazyVGrid(columns: columns) {
+
                     ForEach(myPosts, id: \.postId) { post in
                         NavigationLink(destination: PostDetailView(post: post)) {
                             VStack(spacing: 0) {
@@ -39,12 +38,8 @@ struct ProfileView: View {
                             .contentShape(Rectangle()) // 전체 영역을 탭 가능하게 만듦
                         }
                         .buttonStyle(PlainButtonStyle()) // 기본 버튼 스타일 제거
-                    }
+                    
                 }
-            }
-            .border(.blue)
-            
-            
         }
         .onAppear() {
             guard let user = authViewModel.user else {
