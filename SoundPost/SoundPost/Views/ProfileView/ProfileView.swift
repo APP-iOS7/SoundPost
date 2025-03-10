@@ -6,9 +6,6 @@
 //
 
 import SwiftUI
-
-import SwiftUI
-
 struct ProfileView: View {
     @State var isNavigationBarShowing: Bool = false
     @State private var user : User?
