@@ -43,4 +43,5 @@ struct HomeView: View {
         PostViewModel.createPreview(uploaderName: "사용자8")
     ]
     HomeView(posts: posts)
+        .accentColor(.primary)
 }
