@@ -7,7 +7,8 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isSignupBtnTapped: Bool = false
-    @StateObject private var authViewModel: AuthViewModel = AuthViewModel()
+    //@StateObject private var authViewModel: AuthViewModel = AuthViewModel()
+    @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
         
@@ -100,10 +101,13 @@ struct LoginView: View {
             })
             .padding()
             // user에 값이 할당되면 넘어감
-            .navigationDestination(item: $authViewModel.user) { user in
+            .navigationDestination(item: $authViewModel.loginStatus) { user in
                 ContentView()
                     .environmentObject(authViewModel)
                     .navigationBarBackButtonHidden(true)
+                    .onAppear() {
+                        print(authViewModel.loginStatus ?? "로그인 안됌 ㅇㅁㄹㅇㄴㄹㅁㅇㄴㄹ")
+                    }
             }
         }
     }
