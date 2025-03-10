@@ -120,7 +120,7 @@ struct RecordingView: View {
     var body: some View {
         HStack {
             //음성 인식 파형이 그려질 공간
-            //ToDo: 녹음 시간 카운트 
+            //ToDo: 녹음 시간 카운트
             RoundedRectangle(cornerRadius: 20)
                 .frame(width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height / 7)
                 .overlay(
