@@ -46,7 +46,7 @@ struct PostDetailView: View {
                     .font(.headline)
                     .foregroundColor(.black)
                     .frame(maxWidth: .infinity)
-                    .padding(.top)
+                    .padding(.vertical)
                     .background(.primaryNeon)
             }
         }
