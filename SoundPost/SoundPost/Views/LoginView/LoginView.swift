@@ -13,12 +13,6 @@ struct LoginView: View {
         
         NavigationStack {
             VStack {
-                
-                Text(authViewModel.email ?? "")
-                Text(authViewModel.uid ?? "")
-                Text("User")
-                Text(authViewModel.user?.nickname ?? "no user")
-                
                 // 상단 이미지: 로고 기입 예정
                 Image(systemName: "heart.fill")
                     .resizable()
