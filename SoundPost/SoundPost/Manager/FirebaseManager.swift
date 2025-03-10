@@ -144,6 +144,22 @@ extension FirebaseManager {
     }
     
     
+    private func addPostToUser(userId: String, postId: String, completion: @escaping (Bool) -> Void) {
+        let userRef = firestore.collection("users").document(userId)
+        
+        userRef.updateData([
+            "posts": FieldValue.arrayUnion([postId]) // ✅ 배열에 `postId` 추가 (중복 방지)
+        ]) { error in
+            if let error = error {
+                print("❌ 유저 포스트 추가 실패: \(error.localizedDescription)")
+                completion(false)
+            } else {
+                print("✅ 유저 문서에 포스트 추가 완료: \(postId)")
+                completion(true)
+            }
+        }
+    }
+    
     
     private func saveToStore(collection: String, documentID: String, data: [String: Any]) {
         firestore.collection(collection).document(documentID).setData(data) { error in
