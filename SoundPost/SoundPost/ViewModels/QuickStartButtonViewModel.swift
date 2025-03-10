@@ -22,7 +22,7 @@ class QuickStartButtonViewModel: ObservableObject {
 
         // ✅ 업로드가 완료된 후 데이터 저장
         self.uploader?.posts.append(postId)
-        let newPost = Post(id: postId, audioURL: postUrl.0, imageURL: postUrl.1, uploaderID: self.uploader!.id!)
+        let newPost = Post(id: postId, audioURL: postUrl.0, imageURL: postUrl.1, uploaderID: self.uploader!.id!, uploaderName: self.uploader!.nickname)
 
         print("오디오 URL: \(postUrl.0)")
         print("이미지 URL: \(postUrl.1 ?? "없음")")

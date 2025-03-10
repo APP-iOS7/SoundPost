@@ -23,7 +23,7 @@ struct ContentView: View {
                         
                     case .myProfile:
                         //MyProfileView()
-                        TestUIView2()
+                        ProfileView()
                     }
                         if contentViewModel.isShowingNewPost {
                             QuickStartButtonView(user: authViewModel.user, contentViewModel: contentViewModel, quickStartViewModel: QuickStartButtonViewModel(uploader: authViewModel.user))
