@@ -1,7 +1,15 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var posts: [PostViewModel]
+    @State var posts: [PostViewModel] = [
+        PostViewModel.createPreview(uploaderName: "사용자1"),
+        PostViewModel.createPreview(uploaderName: "사용자2"),
+        PostViewModel.createPreview(uploaderName: "사용자3"),
+        PostViewModel.createPreview(uploaderName: "사용자4"),
+        PostViewModel.createPreview(uploaderName: "사용자6"),
+        PostViewModel.createPreview(uploaderName: "사용자7"),
+        PostViewModel.createPreview(uploaderName: "사용자8")
+    ]
     
     // 한 줄에 하나의 아이템만 표시되도록 그리드 설정
     private let columns = [
