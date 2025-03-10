@@ -60,6 +60,7 @@ struct LoginView: View {
                         // 최초 로그인 시 로그인과 uid 업데이트
                         authViewModel.email = email ?? ""
                         authViewModel.uid = uid ?? ""
+                        authViewModel.password = password
                         // 최초 로그인 시 유저 디폴트에 데이터 저장
                         authViewModel.saveUserAtDefaults()
                         // 유저 정보를 스토어에서 가져와 업데이트 기존에 nil이었던 것에 값이 할당되며 컨텐츠 뷰로 이동
