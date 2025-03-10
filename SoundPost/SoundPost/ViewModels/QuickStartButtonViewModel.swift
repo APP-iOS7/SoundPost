@@ -5,7 +5,7 @@ class QuickStartButtonViewModel: ObservableObject {
     @Published var selectedImage: UIImage? = nil
     @Published private var audio: Data = Data()
     @Published var imageSelection: PhotosPickerItem? = nil
-    @Published private var audioRecoder: AudioRecorder? = nil
+    @Published var audioRecoder: AudioRecorder = AudioRecorder()
     //유저 정보를 받아와야함
     var uploader: User = User(email: " ", nickname: " ", password: " ", isAlarmOn: false, signupDate: Date.now)
     
@@ -36,21 +36,21 @@ class QuickStartButtonViewModel: ObservableObject {
             }
         }
     }
-    final func setRecocrd() {
-        audioRecoder = AudioRecorder()
-    }
     final func startRecoring() {
-        audioRecoder?.startRecording()
+        audioRecoder.startRecording()
     }
     final func stopRecoring() {
-        audioRecoder?.stopRecording()
+        audioRecoder.stopRecording()
     }
     final func restartRecording() {
-        audioRecoder?.deleteRecord()
-        audioRecoder?.startRecording()
+        audioRecoder.deleteRecord()
+        audioRecoder.startRecording()
     }
     final func playRecoed() {
-        audioRecoder?.playRecord()
+        audioRecoder.playRecord()
+    }
+    func timeStamp() -> String {
+        return audioRecoder.timer
     }
     
 }

@@ -36,15 +36,18 @@ final class ContentViewModel: ObservableObject {
             if self.QuickStartButtonClick >= 0 && self.QuickStartButtonClick < 3 {
                 self.QuickStartButtonClick += 1
             } else {
-                self.isShowingNewPost = false
-                self.QuickStartButtonClick = 0
-                self.isQuickStartButtonOn = false
+                self.QuickStartButtonClick = 1
             }
         } else {
             self.isQuickStartButtonOn = true
             self.isShowingNewPost = true
             self.QuickStartButtonClick += 1
         }
+    }
+    final func QuickStartClose() {
+        self.isQuickStartButtonOn = false
+        self.QuickStartButtonClick = 0
+        self.isQuickStartButtonOn = false
     }
     enum Tab: Hashable {
         case home

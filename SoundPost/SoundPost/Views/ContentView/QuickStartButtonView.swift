@@ -10,20 +10,28 @@ struct QuickStartButtonView: View {
             VStack {
                 Spacer()
                 //tab선택에 따른 뷰 변경
-                switch contentViewModel.QuickStartButtonClick {
-                case 1 :
+                if contentViewModel.QuickStartButtonClick == 1 {
                     SelectRecordView(quickStartViewModel: quickStartViewModel)
                         .transition(.scale.animation(.easeOut))
-                case 2 :
+                } else if contentViewModel.QuickStartButtonClick == 2 {
                     RecordingView(quickStartViewModel: quickStartViewModel)
                         .transition(.asymmetric(insertion: .scale.animation(.easeIn), removal: .scale.animation(.easeOut)))
-                case 3 :
-                    SelectView(quickStartViewModel: quickStartViewModel)
+                } else if contentViewModel.QuickStartButtonClick == 3 {
+                    SelectView(quickStartViewModel: quickStartViewModel, contentViewModel: contentViewModel)
                         .transition(.asymmetric(insertion: .scale.animation(.easeIn), removal: .move(edge: .bottom).animation(.easeOut)))
-                default :
-                    TestUIView()
                 }
-                
+            }
+            .onChange(of: contentViewModel.QuickStartButtonClick) { _, click in
+                switch click {
+                case 2:
+                    quickStartViewModel.startRecoring()
+                    print("recording")
+                case 3:
+                    quickStartViewModel.stopRecoring()
+                    print("stop")
+                default:
+                    break
+                }
             }
             
         }
@@ -32,6 +40,7 @@ struct QuickStartButtonView: View {
 
 struct SelectView: View {
     @StateObject var quickStartViewModel: QuickStartButtonViewModel
+    @StateObject var contentViewModel: ContentViewModel
     var body: some View {
         HStack {
             Spacer()
@@ -42,7 +51,7 @@ struct SelectView: View {
                     .fill(Color.clear)
                     .frame(width: 60, height: 60)
                 Button {
-                    
+                    contentViewModel.QuickStartClose()
                 } label: {
                     Text("게시")
                         .foregroundStyle(.black)
@@ -57,8 +66,13 @@ struct SelectView: View {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(Color.clear)
                     .frame(width: 60, height: 60)
+                    .overlay(
+                        VStack{
+                            Text(quickStartViewModel.timeStamp())
+                        }
+                    )
                 Button {
-                    
+                    quickStartViewModel.playRecoed()
                 } label: {
                     Text("다시 듣기")
                         .foregroundStyle(.black)
@@ -102,11 +116,21 @@ struct SelectRecordView: View {
 
 struct RecordingView: View {
     @StateObject var quickStartViewModel: QuickStartButtonViewModel
+    @State var time = "00:00"
     var body: some View {
         HStack {
             //음성 인식 파형이 그려질 공간
+            //ToDo: 녹음 시간 카운트 
             RoundedRectangle(cornerRadius: 20)
                 .frame(width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height / 7)
+                .overlay(
+                    Text(time)
+                        .onChange(of: quickStartViewModel.audioRecoder.countSec) {
+                            time = quickStartViewModel.audioRecoder.timer
+                        }
+                        .foregroundStyle(.white)
+                    
+                )
         }
         .padding(.bottom)
     }

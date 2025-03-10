@@ -1,19 +1,24 @@
 import AVFoundation
 
-class AudioRecorder: NSObject, ObservableObject {
+class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
     var audioRecorder: AVAudioRecorder!
-    var audioPlayer = AVAudioPlayer()
-    var audioFilename : URL {
-        (FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
-            .first?.appendingPathComponent("recording.m4a", conformingTo: .audio))!
-    }
+    //    @Published var isRecording = false
+    @Published var countSec = 0
+    @Published var timerCount : Timer?
+    @Published var timer : String = "00:00"
+    @Published var time: Double = 0
+    
+    var audioPlayer: AVAudioPlayer?
+    @Published var isPlaying = false
+    @Published var isPaused = false
+    var audioFilename : URL?
     //녹음 설정 초기화
     override init() {
         super.init()
         let session = AVAudioSession.sharedInstance()
         do {
             //오디오 세션의 카테고리를 녹음과 재생으로 설정 , 오디오 세션을 활성화
-            try session.setCategory(.playAndRecord, options: .defaultToSpeaker)
+            try session.setCategory(.playAndRecord, options: [.allowAirPlay,.allowBluetooth,.defaultToSpeaker])
             try session.setActive(true)
             //마이크 사용 권한 요청
             AVAudioApplication.requestRecordPermission { allowed in
@@ -26,7 +31,10 @@ class AudioRecorder: NSObject, ObservableObject {
         }
     }
     
-    
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
     func isRecording() -> Bool {
         return audioRecorder.isRecording
     }
@@ -39,29 +47,38 @@ class AudioRecorder: NSObject, ObservableObject {
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
         //녹음 파일 경로 설정
-        
+        let fileURL = getDocumentsDirectory().appendingPathComponent("SoundPost_\(Date().timeIntervalSince1970).m4a")
         do {
-            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
-            audioRecorder.prepareToRecord()
+            countSec = 0
+            audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
+            audioRecorder.record(forDuration: 90)
+            timerCount = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (value) in
+                self.countSec += 1
+                self.timer = "\(self.countSec / 60):\(self.countSec % 60)"
+            })
         } catch {
-            print("Failed to setup recorder: \(error)")
+            print("Failed to setup recorder: \(error.localizedDescription)")
         }
-        
-        audioRecorder.record(forDuration: 90)
+        self.audioFilename = fileURL
     }
     func stopRecording() {
         audioRecorder.stop()
+        self.time = audioRecorder.currentTime
+        try? AVAudioSession.sharedInstance().setActive(false)
     }
     func deleteRecord() {
         audioRecorder.deleteRecording()
     }
     func playRecord() {
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: audioFilename)
-            audioPlayer.play()
+            audioPlayer = try AVAudioPlayer(contentsOf: audioFilename!)
+            audioPlayer?.delegate = self
+            audioPlayer?.play()
+            
         } catch {
-            print("Failed to play record: \(error)")
+            print("Failed to play record: \(error.localizedDescription)")
         }
     }
     
 }
+
