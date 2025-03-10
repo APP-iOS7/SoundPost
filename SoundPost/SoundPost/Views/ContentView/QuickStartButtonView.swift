@@ -4,7 +4,7 @@ import PhotosUI
 struct QuickStartButtonView: View {
     @ObservedObject var contentViewModel: ContentViewModel
     @StateObject private var quickStartViewModel : QuickStartButtonViewModel
-    
+    @EnvironmentObject var authViewModel: AuthViewModel
     init(contentViewModel: ContentViewModel, quickStartViewModel : QuickStartButtonViewModel) {
         self.contentViewModel = contentViewModel
         self._quickStartViewModel = StateObject(wrappedValue: quickStartViewModel)

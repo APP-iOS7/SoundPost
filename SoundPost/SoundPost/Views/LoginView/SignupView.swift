@@ -177,7 +177,7 @@ extension SignupView {
                 guard let email = authResult?.user.email else { return }
                 print(userId)
                 
-                FirebaseManager.shared.saveData(targetData: User(id: userId, email: email, nickname: self.nickname, isAlarmOn: true, posts: [], signupDate: TimeInterval()))
+                FirebaseManager.shared.saveData(targetData: User(id: userId, email: email, nickname: self.nickname, isAlarmOn: true, posts: [], signupDate: Date.now.timeIntervalSince1970))
                 // ✅ 0.3초 뒤에 체크마크 사라지도록 설정
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     withAnimation(.easeOut(duration: 0.3)) {
