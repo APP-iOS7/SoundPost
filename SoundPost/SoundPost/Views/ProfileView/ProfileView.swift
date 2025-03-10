@@ -27,7 +27,7 @@ struct ProfileView: View {
                     ProfileHeaderView(authViewModel: authViewModel)
                 }
                 
-                ForEach(myPosts, id: \.postId) { post in
+                ForEach(myPosts.sorted(by: { $0.uploadDate > $1.uploadDate }), id: \.postId) { post in
                     NavigationLink(destination: PostDetailView(post: post)) {
                         VStack(spacing: 0) {
                             PostView(post: post)
@@ -143,8 +143,8 @@ extension ProfileHeaderView {
         return formatter.string(from: date)
     }
 }
-
-#Preview {
-    ProfileView()
-        .environmentObject(AuthViewModel())
-}
+//
+//#Preview {
+//    ProfileView()
+//        .environmentObject(AuthViewModel())
+//}

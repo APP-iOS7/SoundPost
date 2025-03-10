@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HomeView2: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    @State var posts: [PostViewModel] = []
+    @State private var posts: [PostViewModel] = []
     
     // 한 줄에 하나의 아이템만 표시되도록 그리드 설정
     private let columns = [
@@ -13,13 +13,11 @@ struct HomeView2: View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    ForEach(posts, id: \.postId) { post in
+                    ForEach(posts.sorted(by: { $0.uploadDate > $1.uploadDate }), id: \.postId) { post in
                         NavigationLink(destination: PostDetailView(post: post)) {
                             VStack(spacing: 0) {
                                 PostView(post: post)
-                                
-                                Divider()
-                                    .padding(.leading)
+                                Divider().padding(.leading)
                             }
                             .contentShape(Rectangle()) // 전체 영역을 탭 가능하게 만듦
                         }
@@ -29,6 +27,18 @@ struct HomeView2: View {
             }
             .navigationTitle("홈")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                fetchAllPosts()
+            }
+        }
+    }
+    
+    // 🔹 Firestore에서 모든 포스트 가져오기
+    private func fetchAllPosts() {
+        FirebaseManager.shared.getAllPosts { fetchedPosts in
+            DispatchQueue.main.async {
+                self.posts = fetchedPosts.map { PostViewModel.createPVMwithPost(post: $0, myId: authViewModel.user?.id ?? "") }
+            }
         }
     }
 }
