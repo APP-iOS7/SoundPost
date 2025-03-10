@@ -42,7 +42,7 @@ struct PostView: View {
                 }
             }
             
-            // 포스트 이미지 - URL이 있을 때만 표시
+            // 포스트 이미지
             if let postImageURL = post.postImage {
                 // 이미지 로딩 및 표시
                 AsyncImage(url: URL(string: postImageURL)) { phase in
