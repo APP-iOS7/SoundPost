@@ -3,7 +3,9 @@ import FirebaseAuth
 import FirebaseCore
 
 struct SignupView: View {
-    // TODO: 회원가입하는 시점에 User 생성 후 파이어베이스에 업로드 
+    // TODO: 회원가입하는 시점에 User 생성 후 파이어베이스에 업로드
+    
+    @Environment(\.dismiss) var dismiss
     
     @State private var email: String = ""
     @State private var password: String = ""
@@ -85,6 +87,7 @@ struct SignupView: View {
                 SignupResultView(isSuccessed: isSignupSuccess, subtitle: resultText)
             }
         }
+        
     }
 }
 struct SignupResultView: View {
@@ -165,10 +168,19 @@ extension SignupView {
                 
                 isResultShow = true
                 isSignupSuccess = true
+                
+                guard let userId = authResult?.user.uid else { return }
+                guard let email = authResult?.user.email else { return }
+                
+                FirebaseManager.shared.saveData(targetData: User(id: userId, email: email, nickname: self.nickname, isAlarmOn: true, posts: [], signupDate: Date()))
                 // ✅ 0.3초 뒤에 체크마크 사라지도록 설정
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     withAnimation(.easeOut(duration: 0.3)) {
                         isResultShow = false
+                        
+                        dismiss()
+                        
+                        
                     }
                 }
             }
