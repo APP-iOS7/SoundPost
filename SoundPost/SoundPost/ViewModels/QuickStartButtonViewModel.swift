@@ -5,7 +5,7 @@ class QuickStartButtonViewModel: ObservableObject {
     @Published var selectedImage: UIImage? = nil
     @Published private var audio: Data = Data()
     @Published var imageSelection: PhotosPickerItem? = nil
-    @ObservedObject var audioRecoder: AudioRecorder = AudioRecorder()
+    @Published var audioRecoder: AudioRecorder = AudioRecorder()
     var audioDownloadURL: String = ""
     var imageDownloadURL: String? = nil
     //유저 정보를 받아와야함

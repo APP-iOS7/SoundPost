@@ -4,12 +4,12 @@ import PhotosUI
 struct QuickStartButtonView: View {
     let user: User?
     @ObservedObject var contentViewModel: ContentViewModel
-    @ObservedObject private var quickStartViewModel : QuickStartButtonViewModel
+    @StateObject private var quickStartViewModel : QuickStartButtonViewModel
     
-    init(user: User?, contentViewModel: ContentViewModel) {
+    init(user: User?, contentViewModel: ContentViewModel, quickStartViewModel : QuickStartButtonViewModel) {
         self.user = user
         self.contentViewModel = contentViewModel
-        self.quickStartViewModel = .init(uploader: self.user)
+        self._quickStartViewModel = StateObject(wrappedValue: quickStartViewModel)
     }
     
     var body: some View {
@@ -38,7 +38,7 @@ struct QuickStartButtonView: View {
             }
             .onChange(of: contentViewModel.QuickStartButtonClick) { _, click in
                 if click != 3 && quickStartViewModel.audioRecoder.isPlaying {
-                    quickStartViewModel.audioRecoder.audioPlayer?.stop()
+                    quickStartViewModel.audioRecoder.stopRecord()
                     quickStartViewModel.audioRecoder.isPlaying = false
                 }
                 switch click {

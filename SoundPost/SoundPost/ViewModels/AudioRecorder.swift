@@ -1,12 +1,13 @@
 import AVFoundation
 
 class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
-    var audioRecorder: AVAudioRecorder!
+    var audioRecorder: AVAudioRecorder?
     //    @Published var isRecording = false
     @Published var countSec = 0
     @Published var timerCount : Timer?
     @Published var timer : String = "00:00"
     @Published var time: Double = 0
+    @Published var isRecording = false
     
     var audioPlayer: AVAudioPlayer?
     @Published var isPlaying = false
@@ -35,46 +36,64 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
-    func isRecording() -> Bool {
-        return audioRecorder.isRecording
-    }
+
     func startRecording() {
-        //녹음 설정
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000,
-            AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-        ]
-        //녹음 파일 경로 설정
         let fileURL = getDocumentsDirectory().appendingPathComponent("SoundPost_\(UUID().uuidString).m4a")
+        audioFilename = fileURL
+
         do {
             countSec = 0
-            audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
-            audioRecorder.record(forDuration: 90)
-            timerCount = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (value) in
+            print("🎙️ Starting recording at: \(fileURL.path)")
+
+            let recorder = try AVAudioRecorder(url: fileURL, settings: [
+                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+                AVSampleRateKey: 48000,
+                AVNumberOfChannelsKey: 1,
+                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+            ])
+
+            recorder.prepareToRecord()
+            recorder.record()
+            
+            self.audioRecorder = recorder // 🔹 강한 참조 유지
+            self.isRecording = true
+            print("✅ Recording started")
+
+            timerCount = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
                 self.timer = String(format: "%02d:%02d", self.countSec / 60, self.countSec % 60)
                 if self.countSec >= 90 {
                     self.stopRecording()
-                    self.countSec = 0// ✅ 90초 후 자동 종료
-                }  else {
+                    self.countSec = 0
+                } else {
                     self.countSec += 1
                 }
-                
-            })
+            }
         } catch {
-            print("Failed to setup recorder: \(error.localizedDescription)")
+            print("❌ Failed to setup recorder: \(error.localizedDescription)")
+            self.audioRecorder = nil
         }
-        self.audioFilename = fileURL
     }
     func stopRecording() {
-        audioRecorder.stop()
-        countSec = 0
-        self.time = audioRecorder.currentTime
-        try? AVAudioSession.sharedInstance().setActive(false)
+        guard let recorder = self.audioRecorder else {
+            print("❌ Attempted to stop recording, but no active recorder found")
+            return
+        }
+        
+        recorder.stop()
+        print("🛑 Recording stopped")
+
+        self.isRecording = false
+        timerCount?.invalidate()
+
+        if let fileURL = audioFilename {
+            print("✅ Recording saved at: \(fileURL.path)")
+            print("📂 File exists? \(FileManager.default.fileExists(atPath: fileURL.path))")
+        } else {
+            print("⚠️ audioFilename is nil after recording")
+        }
     }
     func deleteRecord() {
-        audioRecorder.deleteRecording()
+        audioRecorder?.deleteRecording()
     }
     func playRecord() {
         if let audioFilename = audioFilename {
@@ -82,13 +101,15 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
                 audioPlayer = try AVAudioPlayer(contentsOf: audioFilename)
                 audioPlayer?.delegate = self
                 audioPlayer?.play()
+                self.isPlaying = true
+                self.isPaused = false
             } catch {
                 print("Failed to play record: \(error.localizedDescription)")
             }
         }
     }
     func stopRecord() {
-        audioPlayer?.play()
+        audioPlayer?.stop()
+        self.isPlaying = false
     }
 }
-
