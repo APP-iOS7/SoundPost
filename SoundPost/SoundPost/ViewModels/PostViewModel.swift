@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 class PostViewModel: ObservableObject {
     let postId: String
