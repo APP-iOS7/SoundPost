@@ -145,7 +145,7 @@ extension FirebaseManager {
     
     
 
-    private func addPostToUser(userId: String?, postId: String, completion: @escaping ([String]?) -> Void) {
+    func addPostToUser(userId: String?, postId: String, completion: @escaping ([String]?) -> Void) {
         let userRef = firestore.collection("users").document(userId!)
 
         
