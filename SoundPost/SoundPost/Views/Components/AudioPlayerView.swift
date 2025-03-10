@@ -112,11 +112,4 @@ struct ProgressSlider: View {
     }
 }
 
-#Preview("From Bundle") {
-    if let url = Bundle.main.url(forResource: "sampleAudio", withExtension: "m4a") {
-        AudioPlayerView(url: url)
-    } else {
-        Text("Preview audio URL not found")
-    }
-}
 
