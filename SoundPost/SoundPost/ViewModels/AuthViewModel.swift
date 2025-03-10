@@ -2,30 +2,30 @@ import FirebaseAuth
 import Combine
 
 class AuthViewModel: ObservableObject {
-    @Published var state: SignInState = .signedOut
-    @Published var email: String = ""
-    @Published var user: User? = nil
+   
+    @Published var email: String?
+    @Published var uid: String? // firebase User의 id
+    @Published var user: User?
     
-    
-    enum SignInState{
-        case signedIn
-        case signedOut
+    init(email: String? = nil, uid: String? = nil, user: User? = nil) {
+        getUserFromDefaults()
     }
     
-    func emailAuthSignIn(email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if let error = error {
-                print("error: \(error.localizedDescription)")
-                
-                return
-            }
-            
-            if result != nil {
-                self.state = .signedIn
-                print("사용자 이메일: \(String(describing: result?.user.email))")
-                print("사용자 이름: \(String(describing: result?.user.displayName))")
-                
-            }
-        }
+    private func saveUserAtDefaults() {
+        UserDefaults.standard.set(uid, forKey: "uid")
+        UserDefaults.standard.set(email, forKey: "email")
     }
+    private func getUserFromDefaults() {
+        uid = UserDefaults.standard.string(forKey: "uid") ?? nil
+        email = UserDefaults.standard.string(forKey: "email") ?? nil
+    }
+    
+    private func getUserByUID() {
+        FirebaseManager.shared.fetchData(collection: "users", documentID: uid ?? "", completion: { result in
+            self.user = result as? User
+        })
+        
+    }
+
+    
 }

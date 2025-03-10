@@ -3,6 +3,7 @@ import AuthenticationServices
 import FirebaseAuth
 
 struct LoginView: View {
+    // TODO: 앱 로드 시 유저 정보 확인
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isSignupBtnTapped: Bool = false
@@ -49,7 +50,10 @@ struct LoginView: View {
             
             // 로그인 버튼
             Button {
-                authViewModel.emailAuthSignIn(email: email, password: password)
+                FirebaseManager.shared.emailSignIn(email: email, password: password) { email, uid in
+                    authViewModel.email = email ?? ""
+                    authViewModel.uid = uid ?? ""
+                }
             } label: {
                 Text("로그인")
                     .foregroundStyle(.black)

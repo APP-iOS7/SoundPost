@@ -10,4 +10,9 @@ struct User: Codable, Identifiable, DictionaryConvertible {
     let signupDate: Date
     
 }
+extension User {
+    static func createUser(_ email: String, _ nickname: String) -> User {
+        return User(email: email, nickname: nickname, isAlarmOn: true, posts: [], signupDate: Date())
+    }
+}
 
