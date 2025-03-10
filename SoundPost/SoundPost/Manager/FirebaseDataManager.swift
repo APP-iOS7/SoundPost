@@ -1,8 +1,112 @@
-import Foundation
-import FirebaseStorage
+import Firebase
 import FirebaseFirestore
+import FirebaseAuth
+import FirebaseStorage
 
 
-class FirebaseDataManager {
+class FirebaseManager {
+    static let shared = FirebaseManager()
+    
+    let auth: Auth
+    let firestore: Firestore
+    
+    private init() {
+        FirebaseApp.configure()
+        self.auth = Auth.auth()
+        self.firestore = Firestore.firestore()
+    }
+    
+    // Saves
+    func saveData<T: Codable & Identifiable & DictionaryConvertible>(targetData: T) {
+        let collection: String
+        switch targetData {
+            case is User:
+            collection = "users"
+        case is Post:
+            collection = "posts"
+        case is Comment:
+            collection = "comments"
+        default:
+            fatalError("지원되지 않는 타입입니다.")
+        }
+        
+        guard let dictdata = targetData.dictionaryRepresentation else {
+            print("잘못된 데이터")
+            return }
+        
+        saveToStore(collection: collection, documentID: targetData.id as! String, data: dictdata)
+    }
+    
+    func fetchData<T: Codable & Identifiable>(collection: String, documentID: String, completion: @escaping (T?) -> Void) {
+        firestore.collection(collection).document(documentID).getDocument { document, error in
+            if let error = error {
+                print("❌ Error getting document: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+            
+            guard let document = document, document.exists, let data = document.data() else {
+                print("❌ Document does not exist")
+                completion(nil)
+                return
+            }
+            
+            let model: T = self.dictToModel(collection: collection, dict: data)
+            completion(model)
+        }
+    }
+    func deleteData(collection: String, documentID: String) {
+        firestore.collection(collection).document(documentID).delete() { error in
+            if let error = error {
+                print("Error removing document: \(error)")
+            } else {
+                print("Document successfully removed!")
+            }
+        }
+    }
+
+    func emailSignIn(email: String, password: String, completion: @escaping (_ email: String?, _ uid: String?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("error: \(error.localizedDescription)")
+                return
+            }
+            
+            if result != nil {
+                print("사용자 이메일: \(String(describing: result?.user.email))")
+                print("사용자 uid: \(String(describing: result?.user.uid))")
+                completion(result?.user.email, result?.user.uid)
+            }
+        }
+    }
+}
+
+extension FirebaseManager {
+    
+    private func dictToModel<T: Codable & Identifiable> (collection: String, dict: [String: Any]) -> T {
+        switch collection {
+            case "users":
+            return User.from(dictionary: dict) as! T
+            case "posts":
+            return Post.from(dictionary: dict) as! T
+            case "comments":
+            return Comment.from(dictionary: dict) as! T
+            
+        default:
+            fatalError("Collection not found")
+        }
+    }
+    
+    
+    
+    private func saveToStore(collection: String, documentID: String, data: [String: Any]) {
+        firestore.collection(collection).document(documentID).setData(data) { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+    }
     
 }
