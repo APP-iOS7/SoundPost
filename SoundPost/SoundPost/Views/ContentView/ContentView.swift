@@ -34,6 +34,10 @@ struct ContentView: View {
             }
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeInOut, value: contentViewModel.isShowingNewPost)
+//            .onChange(of: authViewModel.user?.posts.count) {
+//                print("변했어!")
+//                print(authViewModel.user?.posts)
+//            }
         }
 }
     

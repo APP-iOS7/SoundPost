@@ -156,7 +156,7 @@ struct ImagePickerView: View {
     @ObservedObject var quickStartViewModel: QuickStartButtonViewModel
     var body: some View {
         VStack {
-            //이미지 선택 시 이미지 , 미 선택 시 검은 화면
+            //이미지 선택 시 이미지
             if let _ = quickStartViewModel.selectedImage {
                 Image(uiImage: quickStartViewModel.selectedImage!)
                     .resizable()
