@@ -83,12 +83,13 @@ struct CustomTabView: View {
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 9.8)
             .background(
                 RoundedRectangle(cornerRadius: 0)
-                    .fill(.white)
+                    .fill(.background)
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 9.8)
             )
     }
 }
 
-//#Preview {
-//    CustomTabView(selectedTab: $ContentViewModel().tabHandler)
-//}
+#Preview {
+    CustomTabView(contentViewModel: ContentViewModel())
+        .tint(.primary)
+}
