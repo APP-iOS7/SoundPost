@@ -26,7 +26,6 @@ struct ProfileView: View {
                 VStack {
                     ProfileHeaderView(authViewModel: authViewModel)
                 }
-                LazyVGrid(columns: columns) {
                     ForEach(myPosts, id: \.postId) { post in
                         NavigationLink(destination: PostDetailView(post: post)) {
                             VStack(spacing: 0) {
@@ -40,10 +39,6 @@ struct ProfileView: View {
                         .buttonStyle(PlainButtonStyle()) // 기본 버튼 스타일 제거
                     }
                 }
-            }
-            .border(.blue)
-            
-            
         }
         .onAppear {
             guard let user = authViewModel.user else {

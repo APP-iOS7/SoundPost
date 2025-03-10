@@ -7,14 +7,15 @@ class QuickStartButtonViewModel: ObservableObject {
     @Published private var audio: Data = Data()
     @Published var imageSelection: PhotosPickerItem? = nil
     @Published var audioRecoder: AudioRecorder = AudioRecorder()
-    @EnvironmentObject var authViewModel: AuthViewModel
+    var authViewModel: AuthViewModel
     var audioDownloadURL: String = ""
     var imageDownloadURL: String? = nil
     //유저 정보를 받아와야함
     var uploader: User?
     
-    init(uploader: User?) {
+    init(authViewModel: AuthViewModel, uploader: User?) {
         self.uploader = uploader
+        self.authViewModel = authViewModel
         print("YESS! \(String(describing: uploader?.nickname))")
     }
     
@@ -32,7 +33,7 @@ class QuickStartButtonViewModel: ObservableObject {
 
         FirebaseManager.shared.saveData(targetData: newPost)
         FirebaseManager.shared.addPostToUser(userId: uploader?.id, postId: postId) { result in
-            print(result)
+            print(result as Any)
         }
     }
     func getUrl() async -> (String, String?) {

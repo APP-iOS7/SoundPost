@@ -26,7 +26,7 @@ struct ContentView: View {
                         ProfileView()
                     }
                         if contentViewModel.isShowingNewPost {
-                            QuickStartButtonView(contentViewModel: contentViewModel, quickStartViewModel: QuickStartButtonViewModel(uploader: authViewModel.user))
+                            QuickStartButtonView(contentViewModel: contentViewModel, quickStartViewModel: QuickStartButtonViewModel(authViewModel: authViewModel, uploader: authViewModel.user))
                                 .transition(AnyTransition.move(edge: .bottom).combined(with: AnyTransition.opacity))
                         }
                 }
