@@ -23,9 +23,11 @@ struct CustomNavigationBar: View {
                     Button(action: btnInit.action) {
                         if btnInit.title == btnInits.last?.title {
                             Text(btnInit.title)
+                                .foregroundStyle(.black)
                                 .padding(.trailing)
                         } else {
                             Text(btnInit.title)
+                                .foregroundStyle(.black)
                         }
                         
                     }
