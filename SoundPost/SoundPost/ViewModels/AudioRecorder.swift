@@ -47,16 +47,20 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
         //녹음 파일 경로 설정
-        let fileURL = getDocumentsDirectory().appendingPathComponent("SoundPost_\(Date().timeIntervalSince1970).m4a")
+        let fileURL = getDocumentsDirectory().appendingPathComponent("SoundPost_\(UUID().uuidString).m4a")
         do {
             countSec = 0
             audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
             audioRecorder.record(forDuration: 90)
             timerCount = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (value) in
-                while self.audioRecorder.isRecording {
+                self.timer = String(format: "%02d:%02d", self.countSec / 60, self.countSec % 60)
+                if self.countSec >= 90 {
+                    self.stopRecording()
+                    self.countSec = 0// ✅ 90초 후 자동 종료
+                }  else {
                     self.countSec += 1
-                    self.timer = "\(self.countSec / 60):\(self.countSec % 60)"
                 }
+                
             })
         } catch {
             print("Failed to setup recorder: \(error.localizedDescription)")
@@ -65,6 +69,7 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
     func stopRecording() {
         audioRecorder.stop()
+        countSec = 0
         self.time = audioRecorder.currentTime
         try? AVAudioSession.sharedInstance().setActive(false)
     }
@@ -72,15 +77,18 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
         audioRecorder.deleteRecording()
     }
     func playRecord() {
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: audioFilename!)
-            audioPlayer?.delegate = self
-            audioPlayer?.play()
-            
-        } catch {
-            print("Failed to play record: \(error.localizedDescription)")
+        if let audioFilename = audioFilename {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: audioFilename)
+                audioPlayer?.delegate = self
+                audioPlayer?.play()
+            } catch {
+                print("Failed to play record: \(error.localizedDescription)")
+            }
         }
     }
-    
+    func stopRecord() {
+        audioPlayer?.play()
+    }
 }
 

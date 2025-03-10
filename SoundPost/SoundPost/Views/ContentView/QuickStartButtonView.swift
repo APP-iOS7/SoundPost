@@ -2,8 +2,16 @@ import SwiftUI
 import PhotosUI
 
 struct QuickStartButtonView: View {
-    @StateObject var contentViewModel: ContentViewModel
-    @StateObject private var quickStartViewModel = QuickStartButtonViewModel()
+    let user: User?
+    @ObservedObject var contentViewModel: ContentViewModel
+    @ObservedObject private var quickStartViewModel : QuickStartButtonViewModel
+    
+    init(user: User?, contentViewModel: ContentViewModel) {
+        self.user = user
+        self.contentViewModel = contentViewModel
+        self.quickStartViewModel = .init(uploader: self.user)
+    }
+    
     var body: some View {
         ZStack {
             Color.gray.opacity(0.3)
@@ -21,12 +29,18 @@ struct QuickStartButtonView: View {
                         .transition(.asymmetric(insertion: .scale.animation(.easeIn), removal: .move(edge: .bottom).animation(.easeOut)))
                 }
             }
-            .onChange(of: quickStartViewModel.audioRecoder.time) {
-                if quickStartViewModel.audioRecoder.time == 90 {
+            .onChange(of: quickStartViewModel.audioRecoder.countSec) { _, sec in
+                print("\(sec)")
+                if sec >= 90 {  // 90초가 되었을 때 트리거
+                    quickStartViewModel.stopRecoring()
                     contentViewModel.QuickStartButtonClick = 3
                 }
             }
             .onChange(of: contentViewModel.QuickStartButtonClick) { _, click in
+                if click != 3 && quickStartViewModel.audioRecoder.isPlaying {
+                    quickStartViewModel.audioRecoder.audioPlayer?.stop()
+                    quickStartViewModel.audioRecoder.isPlaying = false
+                }
                 switch click {
                 case 2:
                     quickStartViewModel.startRecoring()
@@ -44,8 +58,8 @@ struct QuickStartButtonView: View {
 }
 
 struct SelectView: View {
-    @StateObject var quickStartViewModel: QuickStartButtonViewModel
-    @StateObject var contentViewModel: ContentViewModel
+    @ObservedObject var quickStartViewModel: QuickStartButtonViewModel
+    @ObservedObject var contentViewModel: ContentViewModel
     var body: some View {
         HStack {
             Spacer()
@@ -57,6 +71,9 @@ struct SelectView: View {
                     .frame(width: 60, height: 60)
                 Button {
                     contentViewModel.QuickStartClose()
+                    Task {
+                        await quickStartViewModel.NewPostUpload()
+                    }
                 } label: {
                     Text("게시")
                         .foregroundStyle(.black)
@@ -93,7 +110,7 @@ struct SelectView: View {
 }
 
 struct SelectRecordView: View {
-    @StateObject var quickStartViewModel: QuickStartButtonViewModel
+    @ObservedObject var quickStartViewModel: QuickStartButtonViewModel
     var body: some View {
         HStack {
             Spacer()
@@ -120,8 +137,7 @@ struct SelectRecordView: View {
 }
 
 struct RecordingView: View {
-    @StateObject var quickStartViewModel: QuickStartButtonViewModel
-    @State var time = "00:00"
+    @ObservedObject var quickStartViewModel: QuickStartButtonViewModel
     var body: some View {
         HStack {
             //음성 인식 파형이 그려질 공간
@@ -129,11 +145,8 @@ struct RecordingView: View {
             RoundedRectangle(cornerRadius: 20)
                 .frame(width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height / 7)
                 .overlay(
-                    Text(time)
-                        .onChange(of: quickStartViewModel.audioRecoder.countSec) {
-                            time = quickStartViewModel.audioRecoder.timer
-                        }
-                        .foregroundStyle(.white)
+                    Text(quickStartViewModel.audioRecoder.timer)
+                                            .foregroundStyle(.white)
                     
                 )
         }
@@ -142,7 +155,7 @@ struct RecordingView: View {
 }
 
 struct ImagePickerView: View {
-    @StateObject var quickStartViewModel: QuickStartButtonViewModel
+    @ObservedObject var quickStartViewModel: QuickStartButtonViewModel
     var body: some View {
         VStack {
             //이미지 선택 시 이미지 , 미 선택 시 검은 화면
