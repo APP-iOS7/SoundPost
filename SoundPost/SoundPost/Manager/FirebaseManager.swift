@@ -31,6 +31,7 @@ class FirebaseManager {
         
         guard let dictdata = targetData.dictionaryRepresentation else {
             print("잘못된 데이터")
+            print(targetData)
             return }
         
         saveToStore(collection: collection, documentID: targetData.id as! String, data: dictdata)
