@@ -2,12 +2,10 @@ import SwiftUI
 import PhotosUI
 
 struct QuickStartButtonView: View {
-    let user: User?
     @ObservedObject var contentViewModel: ContentViewModel
     @StateObject private var quickStartViewModel : QuickStartButtonViewModel
     
-    init(user: User?, contentViewModel: ContentViewModel, quickStartViewModel : QuickStartButtonViewModel) {
-        self.user = user
+    init(contentViewModel: ContentViewModel, quickStartViewModel : QuickStartButtonViewModel) {
         self.contentViewModel = contentViewModel
         self._quickStartViewModel = StateObject(wrappedValue: quickStartViewModel)
     }
