@@ -38,7 +38,7 @@ struct PostView: View {
                 
                 Spacer()
                 
-                HStack(spacing: 32) {
+                HStack(spacing: 24) {
                     // 댓글 버튼
                     HStack {
                         Button {
