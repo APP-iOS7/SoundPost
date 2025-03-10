@@ -26,7 +26,7 @@ struct ContentView: View {
                         ProfileView()
                     }
                         if contentViewModel.isShowingNewPost {
-                            QuickStartButtonView(user: authViewModel.user, contentViewModel: contentViewModel, quickStartViewModel: QuickStartButtonViewModel(uploader: authViewModel.user))
+                            QuickStartButtonView(contentViewModel: contentViewModel, quickStartViewModel: QuickStartButtonViewModel(uploader: authViewModel.user))
                                 .transition(AnyTransition.move(edge: .bottom).combined(with: AnyTransition.opacity))
                         }
                 }
@@ -34,6 +34,10 @@ struct ContentView: View {
             }
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeInOut, value: contentViewModel.isShowingNewPost)
+//            .onChange(of: authViewModel.user?.posts.count) {
+//                print("변했어!")
+//                print(authViewModel.user?.posts)
+//            }
         }
 }
     

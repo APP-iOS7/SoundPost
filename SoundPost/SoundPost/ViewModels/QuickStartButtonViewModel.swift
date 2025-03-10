@@ -1,4 +1,5 @@
 import SwiftUI
+import FirebaseAuth
 import PhotosUI
 
 class QuickStartButtonViewModel: ObservableObject {
@@ -32,6 +33,11 @@ class QuickStartButtonViewModel: ObservableObject {
     }
     func getUrl() async -> (String, String?) {
         do {
+            if let user = Auth.auth().currentUser {
+                    print("✅ 로그인됨: \(user.email ?? "이메일 없음") (UID: \(user.uid))")
+                } else {
+                    print("❌ 로그아웃 상태")
+                }
             // ✅ 오디오 업로드를 비동기적으로 실행하고 결과를 기다림
             let audioDownloadURL = try await StorageManager.shared.uploadAudioAsync(audioURL: audioRecoder.audioFilename!)
 
@@ -83,6 +89,9 @@ class QuickStartButtonViewModel: ObservableObject {
     }
     func timeStamp() -> String {
         return audioRecoder.timer
+    }
+    final func setRecording() {
+        audioRecoder.setRecording()
     }
     
 }
