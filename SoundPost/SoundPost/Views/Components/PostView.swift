@@ -35,20 +35,28 @@ struct PostView: View {
                 
                 HStack(spacing: 32) {
                     // 댓글 버튼
-                    Button {
-                        // TODO: 댓글 화면으로 이동
-                    } label: {
-                        Image(systemName: "message.badge.waveform")
-                            .foregroundColor(.secondary)
+                    HStack {
+                        Button {
+                            // TODO: 댓글 화면으로 이동
+                        } label: {
+                            Image(systemName: "message.badge.waveform")
+                        }
+                        
+                        Text(post.commensCount.description)
                     }
-                    
+                    .foregroundColor(.secondary)
+
                     // 좋아요 버튼
-                    Button {
-                        post.toggleLike()
-                    } label: {
-                        Image(systemName: post.isLiked ? "heart.fill" : "heart")
-                            .foregroundColor(post.isLiked ? .red : .secondary)
+                    HStack {
+                        Button {
+                            post.toggleLike()
+                        } label: {
+                            Image(systemName: post.isLiked ? "heart.fill" : "heart")
+                        }
+                        
+                        Text(post.likesCount.description)
                     }
+                    .foregroundColor(post.isLiked ? .red : .secondary)
                 }
             }
             

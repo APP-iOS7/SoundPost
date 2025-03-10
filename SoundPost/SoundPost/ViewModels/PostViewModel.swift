@@ -1,26 +1,35 @@
 import SwiftUI
 
 class PostViewModel: ObservableObject {
+    let postId: String
+    let uploadDate: Date
     var uploaderName: String
     var profileImage: String? // URL 문자열
     var postImage: String? // URL 문자열
-    var postId: String
     var audioURL: URL?
+    var likesCount: Int
+    var commensCount: Int
     @Published var isLiked: Bool = false
 
     init(postId: String,
-         uploaderName: String, 
+         uploadedDate: Date,
+         uploaderName: String,
          profileImage: String? = nil, 
          postImage: String? = nil, 
          isLiked: Bool = false,
-         audioURL: URL? = nil) {
-        
+         audioURL: URL? = nil,
+         likesCount: Int,
+         commentsCount: Int
+    ) {
         self.postId = postId
+        self.uploadDate = uploadedDate
         self.uploaderName = uploaderName
         self.profileImage = profileImage
         self.postImage = postImage
         self.isLiked = isLiked
         self.audioURL = audioURL
+        self.likesCount = likesCount
+        self.commensCount = commentsCount
     }
     
     func toggleLike() {
@@ -34,8 +43,11 @@ class PostViewModel: ObservableObject {
         
         return PostViewModel(
             postId: UUID().uuidString,
+            uploadedDate: Date(),
             uploaderName: uploaderName,
-            audioURL: sampleAudioURL
+            audioURL: sampleAudioURL,
+            likesCount: Int.random(in: 0...30),
+            commentsCount: Int.random(in: 0...30)
         )
     }
 }
