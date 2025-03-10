@@ -47,7 +47,7 @@ final class ContentViewModel: ObservableObject {
     final func QuickStartClose() {
         self.isQuickStartButtonOn = false
         self.QuickStartButtonClick = 0
-        self.isQuickStartButtonOn = false
+        self.isShowingNewPost = false
     }
     enum Tab: Hashable {
         case home

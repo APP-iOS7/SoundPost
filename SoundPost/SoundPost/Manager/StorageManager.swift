@@ -77,4 +77,32 @@ class StorageManager {
             }
         }
     }
+    
+    /// ✅ 기존의 `uploadAudio`를 `async/await`으로 변환
+    func uploadAudioAsync(audioURL: URL) async throws -> String {
+        return try await withCheckedThrowingContinuation { continuation in
+            uploadAudio(audioURL: audioURL) { result in
+                switch result {
+                case .success(let url):
+                    continuation.resume(returning: url)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /// ✅ 기존의 `uploadImage`를 `async/await`으로 변환
+    func uploadImageAsync(image: UIImage) async throws -> String {
+        return try await withCheckedThrowingContinuation { continuation in
+            uploadImage(image: image) { result in
+                switch result {
+                case .success(let url):
+                    continuation.resume(returning: url)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
 }
