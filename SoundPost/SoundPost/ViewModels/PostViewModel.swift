@@ -12,7 +12,7 @@ class PostViewModel: ObservableObject {
     @Published var isLiked: Bool = false
 
     init(postId: String,
-         uploadedDate: Date,
+         uploadDate: Date,
          uploaderName: String,
          profileImage: String? = nil, 
          postImage: String? = nil, 
@@ -22,7 +22,7 @@ class PostViewModel: ObservableObject {
          commentsCount: Int
     ) {
         self.postId = postId
-        self.uploadDate = uploadedDate
+        self.uploadDate = uploadDate
         self.uploaderName = uploaderName
         self.profileImage = profileImage
         self.postImage = postImage
@@ -43,7 +43,7 @@ class PostViewModel: ObservableObject {
         
         return PostViewModel(
             postId: UUID().uuidString,
-            uploadedDate: Date(),
+            uploadDate: Date(),
             uploaderName: uploaderName,
             audioURL: sampleAudioURL,
             likesCount: Int.random(in: 0...30),

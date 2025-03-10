@@ -4,6 +4,11 @@ import AVFoundation
 struct PostView: View {
     @ObservedObject var post: PostViewModel
     @State private var imageHeight: CGFloat? = nil
+    private var uploadDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        return formatter.string(from: post.uploadDate)
+    }
 
     var body: some View {
         VStack(spacing: 12) {
@@ -91,6 +96,14 @@ struct PostView: View {
             // 오디오 재생 버튼
             if let audioURL = post.audioURL {
                 AudioPlayerView(url: audioURL)
+            }
+            
+            HStack {
+                Spacer()
+                
+                Text(uploadDate)
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
             }
         }
         .padding()
