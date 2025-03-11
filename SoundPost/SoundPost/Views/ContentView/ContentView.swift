@@ -18,7 +18,7 @@ struct ContentView: View {
                 ZStack{
                     switch contentViewModel.tabHandler {
                     case .home:
-                        HomeView(posts: posts)
+                        HomeView2()
 //                        TestUIView()
                         
                     case .myProfile:
