@@ -14,7 +14,7 @@ struct HomeView2: View {
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(posts.sorted(by: { $0.uploadDate > $1.uploadDate }), id: \.postId) { post in
-                        NavigationLink(destination: PostDetailView2(post: post, quickStartViewModel: QuickStartButtonViewModel(authViewModel: authViewModel, uploader: authViewModel.user))) {
+                        NavigationLink(destination: PostDetailView2(postViewModel: post, quickStartViewModel: QuickStartButtonViewModel(authViewModel: authViewModel, uploader: authViewModel.user))) {
                             VStack(spacing: 0) {
                                 PostView(post: post)
                                 Divider().padding(.leading)

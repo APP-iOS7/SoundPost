@@ -38,6 +38,27 @@ class QuickStartButtonViewModel: ObservableObject {
             self.authViewModel.postingFinished = true
         }
     }
+    
+    final func NewCommentUpload(postId: String?) async {
+        guard let postId else {
+            let commentId = UUID().uuidString
+            let postUrl = await getUrl()
+            
+            // ✅ 업로드가 완료된 후 데이터 저장
+            authViewModel.user?.posts.append(commentId)
+            let newComment = Comment(id: commentId, audioURL: postUrl.0, uploaderID: self.uploader!.id!, targetPostID: postId!)
+            
+            print("오디오 URL: \(postUrl.0)")
+            print("이미지 URL: \(postUrl.1 ?? "없음")")
+            
+            FirebaseManager.shared.saveData(targetData: newComment)
+            //파베에서 postId에 해당하는 post에 commentId 추가 함수 필요
+            FirebaseManager.shared.addPostToUser(userId: uploader?.id, postId: postId) { result in
+                print(result as Any)
+                self.authViewModel.postingFinished = true
+            }
+        }
+    }
     func getUrl() async -> (String, String?) {
         do {
             if let user = Auth.auth().currentUser {

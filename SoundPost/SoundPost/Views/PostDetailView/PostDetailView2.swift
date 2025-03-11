@@ -1,19 +1,19 @@
 import SwiftUI
 
 struct PostDetailView2: View {
-    @ObservedObject var post: PostViewModel
+    @ObservedObject var postViewModel: PostViewModel
     @StateObject private var quickStartViewModel : QuickStartButtonViewModel
     @State private var comments: [CommentViewModel] = []
     @State var isShowingSheet: Bool = false
     init(post: PostViewModel, quickStartViewModel : QuickStartButtonViewModel) {
-        self.post = post
+        self.postViewModel = post
         self._quickStartViewModel = StateObject(wrappedValue: quickStartViewModel)
     }
     
     var body: some View {
         ScrollView {
             VStack {
-                PostView(post: post)
+                PostView(post: postViewModel)
                 
                 Divider()
                     .padding(.leading)
@@ -43,13 +43,7 @@ struct PostDetailView2: View {
             // 하단에 고정된 대답하기 버튼
             Button {
                 isShowingSheet.toggle()
-                // TODO: 대답하기 버튼 액션
-                // 녹음 시작
-                // 녹음 완료
-                // 코멘츠 객체 생성
-                // 코멘츠 객체 서버 등록
-                // 해당
-                
+
             } label: {
                 Text("대답 하기")
                     .font(.headline)
