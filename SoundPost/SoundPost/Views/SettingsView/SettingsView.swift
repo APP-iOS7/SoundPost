@@ -1,22 +1,45 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @State private var isAlarmOn: Bool = true
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        VStack {
-            Toggle("알림", isOn: .constant(true))
-            Button {
-                print("로그아웃")
-            } label: {
-                Text("로그아웃")
-                    .padding(.horizontal)
+        NavigationStack {
+            VStack {
+                Toggle("알림", isOn: $isAlarmOn)
+                
+                Button {
+                    // TODO: 로그아웃
+                } label: {
+                    Text("로그아웃")
+                        .padding(.horizontal)
+                }
+                .buttonStyle(BorderedProminentButtonStyle())
+                .clipShape(Capsule())
+                
+                Spacer()
             }
-            .buttonStyle(BorderedProminentButtonStyle())
-            .clipShape(Capsule())
+            .padding()
+            .navigationTitle("설정")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.primary)
+                    }
+                }
+            }
         }
-        .padding()
     }
 }
 
 #Preview {
     SettingsView()
+        .environmentObject(AuthViewModel())
+        .tint(.primary)
 }

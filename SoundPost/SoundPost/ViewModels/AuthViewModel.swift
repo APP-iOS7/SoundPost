@@ -51,6 +51,26 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    
-    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            
+            // 로그아웃 시 UserDefaults에서 사용자 정보 삭제
+            UserDefaults.standard.removeObject(forKey: "uid")
+            UserDefaults.standard.removeObject(forKey: "email")
+            UserDefaults.standard.removeObject(forKey: "password")
+            
+            // 프로퍼티 초기화
+            self.email = nil
+            self.uid = nil
+            self.password = nil
+            self.user = nil
+            
+            // 로그인 상태를 false로 설정하여 로그인 화면으로 돌아가도록 함
+            self.loginStatus = false
+            self.postingFinished = false
+        } catch let signOutError as NSError {
+            print("Error signing out: \(signOutError)")
+        }
+    }
 }
