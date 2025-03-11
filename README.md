@@ -53,6 +53,22 @@
 3. **PostDetailView** - 포스트 상세 화면
 4. **QuickStartButtonView** - 빠른 시작 버튼
 
+## 📱 앱 UI 미리보기
+
+| 화면 1 | 화면 2 | 화면 3 | 화면 4 | 화면 5 |
+|--------|--------|--------|--------|--------|
+| ![이미지1](assets/image1.png) | ![이미지2](assets/image2.png) | ![이미지3](assets/image3.png) | ![이미지4](assets/image4.png) | ![이미지5](assets/image5.png) |
+| ![이미지6](assets/image6.png) | ![이미지7](assets/image7.png) | ![이미지8](assets/image8.png) | ![이미지9](assets/image9.png) | ![이미지10](assets/image10.png) |
+| ![이미지11](assets/image11.png) | ![이미지12](assets/image12.png) | ![이미지13](assets/image13.png) | ![이미지14](assets/image14.png) | ![이미지15](assets/image15.png) |
+
+<style>
+img {
+  width: 200px;
+  height: auto;
+}
+</style>
+
+
 
 ## 🔄 업데이트 및 개선 목표
 - 기능 업데이트: 포스팅의 녹음시간 제한
