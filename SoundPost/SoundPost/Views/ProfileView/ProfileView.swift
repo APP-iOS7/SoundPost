@@ -28,7 +28,7 @@ struct ProfileView: View {
                 }
                 
                 ForEach(myPosts.sorted(by: { $0.uploadDate > $1.uploadDate }), id: \.postId) { post in
-                    NavigationLink(destination: PostDetailView(post: post)) {
+                    NavigationLink(destination: PostDetailView2(post: post, quickStartViewModel: QuickStartButtonViewModel(authViewModel: authViewModel, uploader: authViewModel.user))) {
                         VStack(spacing: 0) {
                             PostView(post: post)
                             

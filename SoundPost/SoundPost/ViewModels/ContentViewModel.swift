@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUICore
 
-final class ContentViewModel: ObservableObject {
+class ContentViewModel: ObservableObject {
     
     @Published private var preTab: Tab = .home
     @Published var isQuickStartButtonOn: Bool = false
@@ -30,7 +30,7 @@ final class ContentViewModel: ObservableObject {
             
         }
     }
-    final func QuickStartSet() {
+    func QuickStartSet() {
         if isQuickStartButtonOn {
             self.isShowingNewPost = true
             if self.QuickStartButtonClick >= 0 && self.QuickStartButtonClick < 3 {
