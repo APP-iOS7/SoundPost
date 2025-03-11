@@ -33,11 +33,11 @@ class CommentViewModel {
     }
 }
 extension CommentViewModel {
-    static func createCVMwithComment(comment: Comment) -> CommentViewModel {
+    static func createCVMwithComment(comment: Comment, nickname: String) -> CommentViewModel {
         return CommentViewModel(
             commentId: comment.id!,
             uploadDate: Date(timeIntervalSince1970: comment.uploadDate),
-            uploaderName: comment.id!,
+            uploaderName: nickname,
             audioURL: URL(string: comment.audioURL))
     }
     

@@ -64,8 +64,16 @@ extension PostDetailView2 {
     func getAllComments() {
         for commentid in postViewModel.commentIds {
             FirebaseManager.shared.fetchData(collection: "comments", documentID: commentid) { (result: Comment?) in
-                let newCVM = CommentViewModel.createCVMwithComment(comment: result!)
-                self.comments.append(newCVM)
+                let userID = result!.uploaderID
+                
+                FirebaseManager.shared.fetchData(collection: "users", documentID: userID) { (user: User?) in
+                    let uploaderNickname = user!.nickname
+                    
+                    let newCVM = CommentViewModel.createCVMwithComment(comment: result!, nickname: uploaderNickname)
+                    self.comments.append(newCVM)
+                }
+                
+               
                 
             }
         }
