@@ -4,6 +4,7 @@ import Firebase
 struct ContentView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject private var contentViewModel = ContentViewModel()
+    
     var posts: [PostViewModel] = [
         PostViewModel.createPreview(uploaderName: "사용자1"),
         PostViewModel.createPreview(uploaderName: "사용자2"),
@@ -15,6 +16,7 @@ struct ContentView: View {
     ]
     var body: some View {
         VStack(spacing: 0) {
+
                 ZStack{
                     switch contentViewModel.tabHandler {
                     case .home:
@@ -31,13 +33,17 @@ struct ContentView: View {
                         }
                 }
                 CustomTabView(contentViewModel: contentViewModel)
+                
             }
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeInOut, value: contentViewModel.isShowingNewPost)
-//            .onChange(of: authViewModel.user?.posts.count) {
-//                print("변했어!")
-//                print(authViewModel.user?.posts)
-//            }
+            .alert("포스팅 성공", isPresented: $authViewModel.postingFinished, actions: {
+                Button("OK") {
+                    authViewModel.postingFinished.toggle()
+                        }
+            }, message: {
+                Text("포스팅을 성공하였습니다!")
+            })
         }
 }
     
