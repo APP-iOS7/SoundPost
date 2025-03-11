@@ -19,6 +19,7 @@ struct ProfileView: View {
     
     @State var postIds : [String] = []
     @State var myPosts: [PostViewModel] = []
+    @State private var showSettingsView = false
     
     var body: some View {
         NavigationStack {
@@ -39,7 +40,20 @@ struct ProfileView: View {
                     }
                     .buttonStyle(PlainButtonStyle()) // 기본 버튼 스타일 제거
                 }
-                
+            }
+            .navigationTitle("프로필")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        showSettingsView = true
+                    }) {
+                        Image(systemName: "gearshape.fill")
+                    }
+                }
+            }
+            .fullScreenCover(isPresented: $showSettingsView) {
+                SettingsView()
             }
             .onAppear() {
                 guard let user = authViewModel.user else {
@@ -108,7 +122,7 @@ struct ProfileHeaderView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "heart.fill")
+            Image(systemName: "person.circle")
                 .resizable()
                 .frame(width: 100, height: 100)
                 .clipShape(.circle)
@@ -143,8 +157,9 @@ extension ProfileHeaderView {
         return formatter.string(from: date)
     }
 }
-//
-//#Preview {
-//    ProfileView()
-//        .environmentObject(AuthViewModel())
-//}
+
+#Preview {
+    ProfileView()
+        .environmentObject(AuthViewModel())
+        .tint(.primary)
+}
