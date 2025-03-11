@@ -107,7 +107,7 @@ struct LoginView: View {
                     .environmentObject(authViewModel)
                     .navigationBarBackButtonHidden(true)
                     .onAppear() {
-                        print(authViewModel.loginStatus ?? "로그인 안됌 ㅇㅁㄹㅇㄴㄹㅁㅇㄴㄹ")
+                        print(authViewModel.loginStatus ?? "로그인 안됌")
                     }
             }
         }
