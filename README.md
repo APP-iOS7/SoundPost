@@ -55,21 +55,6 @@
 
 ## 📱 앱 UI 미리보기
 
-| 화면 1 | 화면 2 | 화면 3 | 화면 4 | 화면 5 |
-|--------|--------|--------|--------|--------|
-| ![이미지1](assets/image1.png](https://private-user-images.githubusercontent.com/132365672/421206539-722251d7-ab34-4c95-b506-2340497c2873.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDE2NzMzNjQsIm5iZiI6MTc0MTY3MzA2NCwicGF0aCI6Ii8xMzIzNjU2NzIvNDIxMjA2NTM5LTcyMjI1MWQ3LWFiMzQtNGM5NS1iNTA2LTIzNDA0OTdjMjg3My5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzExJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMxMVQwNjA0MjRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jMzdjNWE0NzEyZjg2YWY0MDFkNjAwYTlkMzVlYzI1MDY3NzQ2NmUzNDUyNGM3OTM3YTJmZDE0MzA3NTc1ZmRiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.k63P4r_McvNoWTlDUeQ0YGaiMy-kmx5GPcj4xWfMWj4)) | ![[이미지2](https://private-user-images.githubusercontent.com/132365672/421206539-722251d7-ab34-4c95-b506-2340497c2873.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDE2NzMzNjQsIm5iZiI6MTc0MTY3MzA2NCwicGF0aCI6Ii8xMzIzNjU2NzIvNDIxMjA2NTM5LTcyMjI1MWQ3LWFiMzQtNGM5NS1iNTA2LTIzNDA0OTdjMjg3My5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzExJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMxMVQwNjA0MjRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jMzdjNWE0NzEyZjg2YWY0MDFkNjAwYTlkMzVlYzI1MDY3NzQ2NmUzNDUyNGM3OTM3YTJmZDE0MzA3NTc1ZmRiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.k63P4r_McvNoWTlDUeQ0YGaiMy-kmx5GPcj4xWfMWj4)![image](https://github.com/user-attachments/assets/a8c86367-7ad5-4e45-ac93-f0819530a2ca)
-](assets/image2.png) | ![이미지3](assets/image3.png) | ![이미지4](assets/image4.png) | ![이미지5](assets/image5.png) |
-| ![이미지6](assets/image6.png) | ![이미지7](assets/image7.png) | ![이미지8](assets/image8.png) | ![이미지9](assets/image9.png) | ![이미지10](assets/image10.png) |
-| ![이미지11](assets/image11.png) | ![이미지12](assets/image12.png) | ![이미지13](assets/image13.png) | ![이미지14](assets/image14.png) | ![이미지15](assets/image15.png) |
-
-<style>
-img {
-  width: 200px;
-  height: auto;
-}
-</style>
-
-
 
 ## 🔄 업데이트 및 개선 목표
 - 기능 업데이트: 포스팅의 녹음시간 제한
