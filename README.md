@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/6f6f4184-9a4b-42d7-81af-0a6da116f26d)# ⚡ SoundPost - “소리로 통하는 우리”
+# ⚡ SoundPost - “소리로 통하는 우리”
 
 ## ✨ 음성 기반 SNS
 **SoundPost**는 사용자가 자유롭게 자신의 목소리를 공유하고 소통할 수 있는 음성 기반 SNS입니다. 90초 이내의 음성 게시물을 통해 감정을 나누고, 다양한 이야기로 소통할 수 있습니다.
