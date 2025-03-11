@@ -6,13 +6,6 @@ struct ContentView: View {
     @StateObject private var contentViewModel = ContentViewModel()
     
     var posts: [PostViewModel] = [
-        PostViewModel.createPreview(uploaderName: "사용자1"),
-        PostViewModel.createPreview(uploaderName: "사용자2"),
-        PostViewModel.createPreview(uploaderName: "사용자3"),
-        PostViewModel.createPreview(uploaderName: "사용자4"),
-        PostViewModel.createPreview(uploaderName: "사용자6"),
-        PostViewModel.createPreview(uploaderName: "사용자7"),
-        PostViewModel.createPreview(uploaderName: "사용자8")
     ]
     var body: some View {
         VStack(spacing: 0) {

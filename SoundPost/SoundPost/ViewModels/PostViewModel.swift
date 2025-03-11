@@ -10,6 +10,7 @@ class PostViewModel: ObservableObject {
     var likesCount: Int
     var commensCount: Int
     @Published var isLiked: Bool = false
+    var commentIds: [String]
 
     init(postId: String,
          uploadDate: Date,
@@ -19,7 +20,8 @@ class PostViewModel: ObservableObject {
          isLiked: Bool = false,
          audioURL: URL? = nil,
          likesCount: Int,
-         commentsCount: Int
+         commentsCount: Int,
+         commentIds: [String]
     ) {
         self.postId = postId
         self.uploadDate = uploadDate
@@ -30,6 +32,7 @@ class PostViewModel: ObservableObject {
         self.audioURL = audioURL
         self.likesCount = likesCount
         self.commensCount = commentsCount
+        self.commentIds = commentIds
     }
     
     func toggleLike() {
@@ -37,19 +40,6 @@ class PostViewModel: ObservableObject {
         // TODO: 좋아요 로직 추가 하기
     }
     
-    // 미리보기용 인스턴스 생성 메서드
-    static func createPreview(uploaderName: String = "사용자") -> PostViewModel {
-        let sampleAudioURL = URL(string: "https://filesamples.com/samples/audio/aac/sample3.aac")
-        
-        return PostViewModel(
-            postId: UUID().uuidString,
-            uploadDate: Date(),
-            uploaderName: uploaderName,
-            audioURL: sampleAudioURL,
-            likesCount: Int.random(in: 0...30),
-            commentsCount: Int.random(in: 0...30)
-        )
-    }
 }
 extension PostViewModel {
     static func createPVMwithPost(post: Post, myId: String) -> PostViewModel {
@@ -62,7 +52,8 @@ extension PostViewModel {
             isLiked: post.likes.contains(myId),
             audioURL: URL(string: post.audioURL),
             likesCount: post.likes.count,
-            commentsCount: post.comments.count
+            commentsCount: post.comments.count,
+            commentIds: post.comments
         )
     }
 }

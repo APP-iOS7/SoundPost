@@ -32,3 +32,13 @@ class CommentViewModel {
         )
     }
 }
+extension CommentViewModel {
+    static func createCVMwithComment(comment: Comment) -> CommentViewModel {
+        return CommentViewModel(
+            commentId: comment.id!,
+            uploadDate: Date(timeIntervalSince1970: comment.uploadDate),
+            uploaderName: comment.id!,
+            audioURL: URL(string: comment.audioURL))
+    }
+    
+}
