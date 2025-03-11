@@ -54,13 +54,9 @@
 4. **QuickStartButtonView** - 빠른 시작 버튼
 | 기능         | 설명                       | 이미지  |
 |-------------|--------------------------|---------|
-| 홈 화면      | 최신 포스트 탐색 가능       | ![image](https://github.com/user-attachments/assets/7d24795a-84ac-4821-9dc9-453c03fd0ea1)
- |
-| 프로필 화면  | 유저 정보 및 게시물 확인   | ![image](https://github.com/user-attachments/assets/dbd3e7e5-277d-480c-b851-8a2ebbb4953f)
- |
-| 녹음 기능    | 음성 녹음 및 업로드        | ![Simulator Screenshot - iPhone 16 Pro - 2025-03-11 at 14 40 14](https://github.com/user-attachments/assets/021c0feb-4e65-4ef4-b432-7eb90c255c4c)|
-
-
+| 홈 화면      | 최신 포스트 탐색 가능       | ![image](https://github.com/user-attachments/assets/7d24795a-84ac-4821-9dc9-453c03fd0ea1)|
+| 프로필 화면  | 유저 정보 및 게시물 확인   | ![image](https://github.com/user-attachments/assets/dbd3e7e5-277d-480c-b851-8a2ebbb4953f)|
+| 녹음 기능    | 음성 녹음 및 업로드        | ![image](https://github.com/user-attachments/assets/6f4c0b06-33bf-4e6a-9a56-933ebbc1268b)|
 ---
 
 ## 🔄 업데이트 및 개선 목표
