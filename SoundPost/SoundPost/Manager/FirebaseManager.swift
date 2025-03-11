@@ -143,7 +143,32 @@ extension FirebaseManager {
         }
     }
     
-    
+    func addCommentToPost(postId: String?, commentId: String, completion: @escaping (Post?) -> Void) {
+        let postRef = firestore.collection("posts").document(postId!)
+        postRef.updateData(["comments": FieldValue.arrayUnion([commentId])]) { error in
+            if let error = error {
+                print("comment 추가 불가능: \(error.localizedDescription)")
+                completion(nil)
+            } else {
+                print("Post에 comment 추가됨")
+                
+                postRef.getDocument { document, error in
+                    if let error = error {
+                        print("❌ 포스트 가져오기 실패: \(error.localizedDescription)")
+                        completion(nil)
+                    } else {
+                        guard let document = document else {
+                            print("❌ 포스트 없음")
+                            completion(nil)
+                            return
+                        }
+                        let updatePost = try! document.data(as: Post.self)
+                        completion(updatePost)
+                    }
+                }
+            }
+        }
+    }
 
     func addPostToUser(userId: String?, postId: String, completion: @escaping ([String]?) -> Void) {
         let userRef = firestore.collection("users").document(userId!)
