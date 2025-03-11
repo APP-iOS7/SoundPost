@@ -177,6 +177,13 @@ extension FirebaseManager {
             }
         }
     }
+    
+    func addComment(comment: Comment, completion: @escaping (Result<Void, Error>) -> Void) {
+        // save comment to store
+        saveData(targetData: comment)
+        // post update server
+        
+    }
 
     
     
