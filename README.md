@@ -16,8 +16,8 @@
 
 ## ⚡ 팀원
 - **이재용** - FirebaseManager, StorageManager 등 파이어베이스 관련 기능 일체 & 로그인 - 회원가입 기능 
-- **윤영서** - 접근성 테스트, UX/UI 테스트
-- **최하진** - 음성 녹음, 포토 피커, 포스트 게시 등 QuickStart 기능 
+- **윤영서** - HomeView, MyPofileView 
+- **최하진** - 음성 녹음, 포토 피커, 포스트 게시 등 QuickStart 기능, Comment 추가 기능
 
 ---
 
