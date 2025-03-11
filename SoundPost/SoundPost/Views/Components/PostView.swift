@@ -108,15 +108,3 @@ struct PostView: View {
         .padding()
     }
 }
-
-#Preview {
-    let viewModel = PostViewModel.createPreview(uploaderName: "사용자")
-    viewModel.postImage = "https://picsum.photos/600/400"
-    
-    return PostView(post: viewModel)
-}
-
-#Preview("no image") {
-    let viewModel = PostViewModel.createPreview(uploaderName: "사용자")
-    return PostView(post: viewModel)
-}
