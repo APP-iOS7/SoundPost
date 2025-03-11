@@ -36,7 +36,7 @@ struct PostDetailView2: View {
             }
         }
         .sheet(isPresented: $isShowingSheet) {
-                    ModalContentView()
+            ModalContentView(quickStartViewModel: quickStartViewModel)
                 .presentationDetents([.height(UIScreen.main.bounds.height / 7)])
                 }
         .safeAreaInset(edge: .bottom, spacing: 0) {
@@ -63,44 +63,94 @@ struct PostDetailView2: View {
 }
 
 struct ModalContentView: View {
-    @ObservedObject private var commentButtonViewModel: ContentViewModel = ContentViewModel()
+    @ObservedObject private var commentButtonViewModel: CommentButtonViewModel = CommentButtonViewModel()
+    @StateObject var quickStartViewModel : QuickStartButtonViewModel
     var body: some View {
         VStack {
-            Button {
-                commentButtonViewModel.QuickStartSet()
-            } label: {
-                VStack {
-                    switch commentButtonViewModel.QuickStartButtonClick {
-                    case 1:
-                        Image(systemName: "record.circle")
-                            .foregroundColor(.red)
-                            .font(.title)
-                        Text("녹음")
-                            .foregroundColor(.red)
-                            .font(.caption)
-                    case 2 :
-                        Image(systemName: "stop.circle.fill")
-                            .foregroundColor(.red)
-                            .font(.title)
-                        Text("녹음중")
-                            .foregroundColor(.red)
-                            .font(.caption)
-                    case 3 :
-                        Image(systemName: "record.circle")
-                            .foregroundColor(.red)
-                            .font(.title)
-                        Text("재녹음")
-                            .foregroundColor(.red)
-                            .font(.caption)
-                    default:
-                        Image(systemName: "plus.circle.fill")
-                            .foregroundColor(commentButtonViewModel.QuickStartButtonColor())
-                            .font(.title)
-                        Text("포스팅")
-                            .foregroundColor(commentButtonViewModel.QuickStartButtonColor())
-                            .font(.caption)
+            HStack {
+                if commentButtonViewModel.buttonClick == 3 {
+                    Button {
+                        commentButtonViewModel.QuickStartClose()
+                        Task {
+                            await quickStartViewModel.NewPostUpload()
+                        }
+                    } label: {
+                        Text("게시")
+                            .foregroundStyle(.black)
+                    }
+                    .padding()
+                    .buttonBorderShape(.roundedRectangle(radius: 10))
+                    .buttonStyle(.borderedProminent)
+                    .tint(.primaryNeon.opacity(1))
+                }
+                
+                Button {
+                    commentButtonViewModel.QuickStartSet()
+                } label: {
+                    VStack {
+                        switch commentButtonViewModel.buttonClick {
+                        case 2 :
+                            Image(systemName: "stop.circle.fill")
+                                .foregroundColor(.red)
+                                .font(.title)
+                            Text("녹음중")
+                                .foregroundColor(.red)
+                                .font(.caption)
+                        case 3 :
+                            Image(systemName: "record.circle")
+                                .foregroundColor(.red)
+                                .font(.title)
+                            Text("재녹음")
+                                .foregroundColor(.red)
+                                .font(.caption)
+                        default:
+                            Image(systemName: "record.circle")
+                                .foregroundColor(.red)
+                                .font(.title)
+                            Text("녹음")
+                                .foregroundColor(.red)
+                                .font(.caption)
+                        }
                     }
                 }
+                
+                if commentButtonViewModel.buttonClick == 3 {
+                        Button {
+                            quickStartViewModel.playRecoed()
+                        } label: {
+                            Text("다시 듣기")
+                                .foregroundStyle(.black)
+                        }
+                        .padding()
+                        .buttonBorderShape(.roundedRectangle(radius: 10))
+                        .buttonStyle(.borderedProminent)
+                        .tint(.primaryNeon.opacity(1))
+                }
+            }
+        }
+        .onChange(of: quickStartViewModel.audioRecoder.countSec) { _, sec in
+            print("\(sec)")
+            if sec >= 90 {  // 90초가 되었을 때 트리거
+                quickStartViewModel.stopRecoring()
+                commentButtonViewModel.buttonClick = 3
+            }
+        }
+        .onChange(of: commentButtonViewModel.buttonClick) { _, click in
+            if click != 3 && quickStartViewModel.audioRecoder.isPlaying {
+                quickStartViewModel.audioRecoder.stopRecord()
+                quickStartViewModel.audioRecoder.isPlaying = false
+            }
+            switch click {
+            case 1:
+                quickStartViewModel.setRecording()
+            case 2:
+                quickStartViewModel.startRecoring()
+                print("recording")
+            case 3:
+                quickStartViewModel.stopRecoring()
+                print("stop")
+            default:
+                break
             }
         }
     }
