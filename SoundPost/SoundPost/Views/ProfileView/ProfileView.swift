@@ -122,7 +122,7 @@ struct ProfileHeaderView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "heart.fill")
+            Image(systemName: "person.circle")
                 .resizable()
                 .frame(width: 100, height: 100)
                 .clipShape(.circle)
