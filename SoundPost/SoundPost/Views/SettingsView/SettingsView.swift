@@ -15,12 +15,14 @@ struct SettingsView: View {
                 } label: {
                     Text("로그아웃")
                         .padding(.horizontal)
+                        .foregroundStyle(Color.black)
                 }
                 .buttonStyle(BorderedProminentButtonStyle())
                 .clipShape(Capsule())
                 
                 Spacer()
             }
+            .tint(.primaryNeon)
             .padding()
             .navigationTitle("설정")
             .navigationBarTitleDisplayMode(.inline)
