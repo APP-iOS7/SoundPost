@@ -3,6 +3,12 @@
 ## ✨ 음성 기반 SNS
 **SoundPost**는 사용자가 자유롭게 자신의 목소리를 공유하고 소통할 수 있는 음성 기반 SNS입니다. 90초 이내의 음성 게시물을 통해 감정을 나누고, 다양한 이야기로 소통할 수 있습니다.
 
+## Targets
+- 텍스팅이 어려운 저연령층
+- 눈이 잘 보이지 않는 고연령층
+- 문맹율이 높은 국가의 사람들
+- 일반적인 SNS에 질린 사람들
+
 ---
 
 ## 🔹 기능
@@ -23,7 +29,8 @@
 
 ## 🛠 기술 스택
 - **Frontend**: SwiftUI
-- **Backend**: Firebase
+- **Database**: FirebaseStore, FirebaseStorage
+- **Authentification**: FirebaseAuth
 - **Audio Processing**: AVFoundation
 
 ---
