@@ -17,7 +17,6 @@ class QuickStartButtonViewModel: ObservableObject {
     init(authViewModel: AuthViewModel, uploader: User?) {
         self.uploader = uploader
         self.authViewModel = authViewModel
-        print("YESS! \(String(describing: uploader?.nickname))")
     }
     
     final func NewPostUpload() async {
@@ -40,7 +39,6 @@ class QuickStartButtonViewModel: ObservableObject {
     }
     
     final func NewCommentUpload(postId: String?) async {
-        guard let postId else {
             let commentId = UUID().uuidString
             let postUrl = await getUrl()
             
@@ -53,11 +51,11 @@ class QuickStartButtonViewModel: ObservableObject {
             
             FirebaseManager.shared.saveData(targetData: newComment)
             //파베에서 postId에 해당하는 post에 commentId 추가 함수 필요
-            FirebaseManager.shared.addPostToUser(userId: uploader?.id, postId: postId) { result in
+            FirebaseManager.shared.addCommentToPost(postId: postId, commentId: commentId) { result in
                 print(result as Any)
                 self.authViewModel.postingFinished = true
             }
-        }
+        
     }
     func getUrl() async -> (String, String?) {
         do {
