@@ -163,6 +163,7 @@ extension FirebaseManager {
                             return
                         }
                         let updatePost = try! document.data(as: Post.self)
+                        print("0000000000")
                         completion(updatePost)
                     }
                 }

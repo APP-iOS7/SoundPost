@@ -36,7 +36,7 @@ struct PostDetailView2: View {
             }
         }
         .sheet(isPresented: $isShowingSheet) {
-            ModalContentView(quickStartViewModel: quickStartViewModel)
+            ModalContentView(quickStartViewModel: quickStartViewModel, isShowingSheet: isShowingSheet, postId: postViewModel.postId)
                 .presentationDetents([.height(UIScreen.main.bounds.height / 7)])
                 }
         .safeAreaInset(edge: .bottom, spacing: 0) {
@@ -59,15 +59,19 @@ struct PostDetailView2: View {
 struct ModalContentView: View {
     @ObservedObject private var commentButtonViewModel: CommentButtonViewModel = CommentButtonViewModel()
     @StateObject var quickStartViewModel : QuickStartButtonViewModel
+    @State var isShowingSheet: Bool
+    let postId: String?
     var body: some View {
         VStack {
             HStack {
                 if commentButtonViewModel.buttonClick == 3 {
                     Button {
                         commentButtonViewModel.QuickStartClose()
+                        isShowingSheet.toggle()
                         Task {
-                            await quickStartViewModel.NewPostUpload()
+                            await quickStartViewModel.NewCommentUpload(postId: postId)
                         }
+                        
                     } label: {
                         Text("게시")
                             .foregroundStyle(.black)
