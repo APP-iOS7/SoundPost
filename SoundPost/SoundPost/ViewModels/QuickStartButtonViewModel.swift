@@ -7,6 +7,7 @@ class QuickStartButtonViewModel: ObservableObject {
     @Published private var audio: Data = Data()
     @Published var imageSelection: PhotosPickerItem? = nil
     @Published var audioRecoder: AudioRecorder = AudioRecorder()
+    @Published var postingFinished: Bool = false
     var authViewModel: AuthViewModel
     var audioDownloadURL: String = ""
     var imageDownloadURL: String? = nil
@@ -34,6 +35,7 @@ class QuickStartButtonViewModel: ObservableObject {
         FirebaseManager.shared.saveData(targetData: newPost)
         FirebaseManager.shared.addPostToUser(userId: uploader?.id, postId: postId) { result in
             print(result as Any)
+            self.authViewModel.postingFinished = true
         }
     }
     func getUrl() async -> (String, String?) {

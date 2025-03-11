@@ -8,7 +8,7 @@ class AuthViewModel: ObservableObject {
     @Published var password: String?
     @Published var user: User? = nil
     @Published var loginStatus: Bool? = nil
-    
+    @Published var postingFinished: Bool = false
     init() {
         print("📌 AuthViewModel 초기화 시작")
         getUserFromDefaults()
