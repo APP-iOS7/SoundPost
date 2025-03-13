@@ -39,18 +39,35 @@
 ### 홈 화면 (HomeView2.swift)
 - 최신 포스트를 한눈에 볼 수 있는 피드
 - Firestore 연동으로 실시간 데이터 반영
-
+![Image](https://github.com/user-attachments/assets/722251d7-ab34-4c95-b506-2340497c2873){: width="30%" height="30%"}
 ### 프로필 화면 (ProfileView.swift)
 - 탭에 따라 주요 화면 전환
 - **홈(HomeView2)** & **프로필(ProfileView)** 지원
-
+![Image](https://github.com/user-attachments/assets/4b42d81d-8f0c-4b4c-9612-28bad44c37fc){: width="30%" height="30%"}
 ### 빠른 시작 (QuickStartButtonView.swift)
 - 녹음, 파일 업로드 기능 제공
 - 게시물 업로드 전 미리 듣기 가능
+이미지 미선택
+![Image](https://github.com/user-attachments/assets/fd8e83ab-2d83-4178-b086-061331d07d62){: width="30%" height="30%"}
 
+이미지 선택(PhotosPicker)
+![Image](https://github.com/user-attachments/assets/882199e5-7069-4af7-a1e4-a6e6dcbde23a){: width="30%" height="30%"}
+
+이미지 선택
+![Image](https://github.com/user-attachments/assets/e9f1a242-e9f3-4469-9055-cd58b59acfc6){: width="30%" height="30%"}
+
+녹음 시
+![Image](https://github.com/user-attachments/assets/4930c04b-2771-4527-9168-3df858e6e305){: width="30%" height="30%"}
+
+포스팅 성공 시
+![Image](https://github.com/user-attachments/assets/c1b1248e-d123-497a-82b1-ca76cd1e3745){: width="30%" height="30%"}
 ### 포스트 상세 화면 (PostDetailView.swift)
 - 포스트 내용 확인 및 댓글 기능
+![Image](https://github.com/user-attachments/assets/7d3a652e-472b-4523-ab4f-d2a37c902ae8){: width="30%" height="30%"}
+CommentView
+![Image](https://github.com/user-attachments/assets/4ce88303-70ff-4384-a48b-0f6d1dc98365){: width="30%" height="30%"}
 
+![Image](https://github.com/user-attachments/assets/6acdcbcc-956c-4657-9498-71f0faccf7cc){: width="30%" height="30%"}
 ---
 
 
@@ -84,15 +101,15 @@
 - 스토리지와 스토어를 분리해서 관리했던 게 재미있었다.
 
 **최하진**
-[Swift에 대한 심화 공부]
+- [Swift에 대한 심화 공부]
 - MVVM패턴으로 구현하려고 노력하는 과정이 재밌었습니다.
 - StateObject와 ObservedObjec의 차이에 대해서 공부하였습니다.
 - AVFoundation을 통한 오디오 녹음, 재생을 다루는 법을 배웠습니다. 
 - TabBar 커스텀과 QuickStartbuttonView의 상호작용을 만들어 기획에 가깝게 원하는 그림을 만들어 낸 점이 힘들었지만 뿌듯했습니다.
 
-[기획과 커뮤니케이션의 중요성]
+- [기획과 커뮤니케이션의 중요성]
 - 이전 경험을 바탕으로 이번엔 충분한 기획과 더 많은 논의로 앱제작을 효율적으로 할 수 있었습니다. 
 - 작은 버튼 위치, 뷰 배치 등 에서 각자가 익숙하게 사용하는 앱이나 손 방향 등 사용자 경험이 달라 생기는 생각의 차이를 크게 느꼈고 의견을 합의해나가는 법을 배웠습니다.
 
-[아쉬운 점]
-시간관계 상 가장 기본이 되는 기능인 녹음, 포스팅, 답글 녹음, 포스팅 기능에 초점을 두고 구현해냈기 때문에 녹음 중 시간 UI 업데이트 잘 안되고 그 외 몇몇 기능을 구현 못한 점이 아쉽습니다.
+- [아쉬운 점]
+- 시간관계 상 가장 기본이 되는 기능인 녹음, 포스팅, 답글 녹음, 포스팅 기능에 초점을 두고 구현해냈기 때문에 녹음 중 시간 UI 업데이트 잘 안되고 그 외 몇몇 기능을 구현 못한 점이 아쉽습니다.
