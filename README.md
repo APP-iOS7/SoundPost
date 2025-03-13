@@ -56,8 +56,8 @@
   <img src="https://github.com/user-attachments/assets/882199e5-7069-4af7-a1e4-a6e6dcbde23a" width="30%" height="30%"/>
   <img src="https://github.com/user-attachments/assets/e9f1a242-e9f3-4469-9055-cd58b59acfc6" width="30%" height="30%"/>
   <img src="https://github.com/user-attachments/assets/4930c04b-2771-4527-9168-3df858e6e305" width="30%" height="30%"/>
-  <img src="https://github.com/user-attachments/assets/4930c04b-2771-4527-9168-3df858e6e305" width="30%" height="30%"/>
   <img src="https://github.com/user-attachments/assets/5de38327-e32f-4ece-98a5-33f4318da8cd" width="30%" height="30%"/>
+  <img src="https://github.com/user-attachments/assets/c1b1248e-d123-497a-82b1-ca76cd1e3745" width="30%" height="30%"/>
 </p>
 ### 포스트 상세 화면 (PostDetailView.swift)
 - 포스트 내용 확인 및 댓글 기능
@@ -65,8 +65,9 @@
   <img src="https://github.com/user-attachments/assets/7d3a652e-472b-4523-ab4f-d2a37c902ae8" width="30%" height="30%"/>
   <img src="https://github.com/user-attachments/assets/f9a348f2-656d-4eb8-b9a8-4500abc57639" width="30%" height="30%"/>
   <img src="https://github.com/user-attachments/assets/4ce88303-70ff-4384-a48b-0f6d1dc98365" width="30%" height="30%"/>
-  <img src="https://github.com/user-attachments/assets/6acdcbcc-956c-4657-9498-71f0faccf7cc" width="30%" height="30%"/>
 </p>
+  <img src="https://github.com/user-attachments/assets/6acdcbcc-956c-4657-9498-71f0faccf7cc" width="30%" height="30%"/>
+
 ---
 
 
