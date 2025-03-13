@@ -39,35 +39,34 @@
 ### 홈 화면 (HomeView2.swift)
 - 최신 포스트를 한눈에 볼 수 있는 피드
 - Firestore 연동으로 실시간 데이터 반영
-![Image](https://github.com/user-attachments/assets/722251d7-ab34-4c95-b506-2340497c2873){: width="30%" height="30%"}
+<img src="https://github.com/user-attachments/assets/722251d7-ab34-4c95-b506-2340497c2873" width="30%" height="30%"/>
+
 ### 프로필 화면 (ProfileView.swift)
 - 탭에 따라 주요 화면 전환
 - **홈(HomeView2)** & **프로필(ProfileView)** 지원
-![Image](https://github.com/user-attachments/assets/4b42d81d-8f0c-4b4c-9612-28bad44c37fc){: width="30%" height="30%"}
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0aed2195-ae52-4ab4-9f53-ccf6ac86935c" width="30%" height="30%"/>
+  <img src="https://github.com/user-attachments/assets/d16eeeb7-c2d1-4726-8aab-54a0a6fbf76b" width="30%" height="30%"/>
+</p>
 ### 빠른 시작 (QuickStartButtonView.swift)
 - 녹음, 파일 업로드 기능 제공
 - 게시물 업로드 전 미리 듣기 가능
-이미지 미선택
-![Image](https://github.com/user-attachments/assets/fd8e83ab-2d83-4178-b086-061331d07d62){: width="30%" height="30%"}
-
-이미지 선택(PhotosPicker)
-![Image](https://github.com/user-attachments/assets/882199e5-7069-4af7-a1e4-a6e6dcbde23a){: width="30%" height="30%"}
-
-이미지 선택
-![Image](https://github.com/user-attachments/assets/e9f1a242-e9f3-4469-9055-cd58b59acfc6){: width="30%" height="30%"}
-
-녹음 시
-![Image](https://github.com/user-attachments/assets/4930c04b-2771-4527-9168-3df858e6e305){: width="30%" height="30%"}
-
-포스팅 성공 시
-![Image](https://github.com/user-attachments/assets/c1b1248e-d123-497a-82b1-ca76cd1e3745){: width="30%" height="30%"}
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/fd8e83ab-2d83-4178-b086-061331d07d62" width="30%" height="30%"/>
+  <img src="https://github.com/user-attachments/assets/882199e5-7069-4af7-a1e4-a6e6dcbde23a" width="30%" height="30%"/>
+  <img src="https://github.com/user-attachments/assets/e9f1a242-e9f3-4469-9055-cd58b59acfc6" width="30%" height="30%"/>
+  <img src="https://github.com/user-attachments/assets/4930c04b-2771-4527-9168-3df858e6e305" width="30%" height="30%"/>
+  <img src="https://github.com/user-attachments/assets/4930c04b-2771-4527-9168-3df858e6e305" width="30%" height="30%"/>
+  <img src="https://github.com/user-attachments/assets/5de38327-e32f-4ece-98a5-33f4318da8cd" width="30%" height="30%"/>
+</p>
 ### 포스트 상세 화면 (PostDetailView.swift)
 - 포스트 내용 확인 및 댓글 기능
-![Image](https://github.com/user-attachments/assets/7d3a652e-472b-4523-ab4f-d2a37c902ae8){: width="30%" height="30%"}
-CommentView
-![Image](https://github.com/user-attachments/assets/4ce88303-70ff-4384-a48b-0f6d1dc98365){: width="30%" height="30%"}
-
-![Image](https://github.com/user-attachments/assets/6acdcbcc-956c-4657-9498-71f0faccf7cc){: width="30%" height="30%"}
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7d3a652e-472b-4523-ab4f-d2a37c902ae8" width="30%" height="30%"/>
+  <img src="https://github.com/user-attachments/assets/f9a348f2-656d-4eb8-b9a8-4500abc57639" width="30%" height="30%"/>
+  <img src="https://github.com/user-attachments/assets/4ce88303-70ff-4384-a48b-0f6d1dc98365" width="30%" height="30%"/>
+  <img src="https://github.com/user-attachments/assets/6acdcbcc-956c-4657-9498-71f0faccf7cc" width="30%" height="30%"/>
+</p>
 ---
 
 
