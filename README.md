@@ -23,7 +23,7 @@
 ## ⚡ 팀원
 - **이재용** - FirebaseManager, StorageManager 등 파이어베이스 관련 기능 일체 & 로그인 - 회원가입 기능 
 - **윤영서** - HomeView, MyPofileView 
-- **최하진** - 음성 녹음, 포토 피커, 포스트 게시 등 QuickStart 기능, Comment 추가 기능
+- **최하진** - 음성 녹음, 포스트 게시 등 QuickStart 기능, Comment 추가 기능
 
 ---
 
@@ -32,7 +32,6 @@
 - **Database**: FirebaseStore, FirebaseStorage
 - **Authentification**: FirebaseAuth
 - **Audio Processing**: AVFoundation
-- **PhotosPicker**: PhotosUI 
 ---
 
 ## 🚀 기능 소개
@@ -116,15 +115,10 @@
 - 스토리지와 스토어를 분리해서 관리했던 게 재미있었다.
 
 **최하진**
-- [Swift에 대한 심화 공부]
+
 - MVVM패턴으로 구현하려고 노력하는 과정이 재밌었습니다.
-- StateObject와 ObservedObjec의 차이에 대해서 공부하였습니다.
-- AVFoundation을 통한 오디오 녹음, 재생을 다루는 법을 배웠습니다. 
+- StateObject와 ObservedObjec의 차이에 대해서 공부하였고 AVFoundation을 통한 오디오 녹음, 재생을 다루는 법을 배웠습니다. 
 - TabBar 커스텀과 QuickStartbuttonView의 상호작용을 만들어 기획에 가깝게 원하는 그림을 만들어 낸 점이 힘들었지만 뿌듯했습니다.
 
-- [기획과 커뮤니케이션의 중요성]
-- 이전 경험을 바탕으로 이번엔 충분한 기획과 더 많은 논의로 앱제작을 효율적으로 할 수 있었습니다. 
-- 작은 버튼 위치, 뷰 배치 등 에서 각자가 익숙하게 사용하는 앱이나 손 방향 등 사용자 경험이 달라 생기는 생각의 차이를 크게 느꼈고 의견을 합의해나가는 법을 배웠습니다.
-
-- [아쉬운 점]
+- [기획과 커뮤니케이션의 중요성] 이전 경험을 바탕으로 이번엔 충분한 기획과 더 많은 논의로 앱 제작을 효율적으로 할 수 있었습니다. 
 - 시간관계 상 가장 기본이 되는 기능인 녹음, 포스팅, 답글 녹음, 포스팅 기능에 초점을 두고 구현해냈기 때문에 녹음 중 시간 UI 업데이트 잘 안되고 그 외 몇몇 기능을 구현 못한 점이 아쉽습니다.
